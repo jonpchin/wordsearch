@@ -33,14 +33,53 @@
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.board = new System.Windows.Forms.TableLayoutPanel();
-            this.letter1 = new System.Windows.Forms.Button();
-            this.letter2 = new System.Windows.Forms.Button();
-            this.letter3 = new System.Windows.Forms.Button();
-            this.letter4 = new System.Windows.Forms.Button();
-            this.letter5 = new System.Windows.Forms.Button();
-            this.letter6 = new System.Windows.Forms.Button();
-            this.letter7 = new System.Windows.Forms.Button();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -54,53 +93,19 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
+            this.letter1 = new System.Windows.Forms.Button();
+            this.letter2 = new System.Windows.Forms.Button();
+            this.letter3 = new System.Windows.Forms.Button();
+            this.letter4 = new System.Windows.Forms.Button();
+            this.letter5 = new System.Windows.Forms.Button();
+            this.letter6 = new System.Windows.Forms.Button();
+            this.letter7 = new System.Windows.Forms.Button();
+            this.yourFirstDraw = new System.Windows.Forms.Button();
+            this.theirFirstDraw = new System.Windows.Forms.Button();
+            this.yourFirstDrawLabel = new System.Windows.Forms.Label();
+            this.theirFirstDrawLabel = new System.Windows.Forms.Label();
+            this.firstTurnLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.board.SuspendLayout();
             this.SuspendLayout();
@@ -240,61 +245,590 @@
             this.board.Size = new System.Drawing.Size(800, 800);
             this.board.TabIndex = 1;
             // 
-            // letter1
+            // label60
             // 
-            this.letter1.Location = new System.Drawing.Point(240, 871);
-            this.letter1.Name = "letter1";
-            this.letter1.Size = new System.Drawing.Size(50, 50);
-            this.letter1.TabIndex = 2;
-            this.letter1.UseVisualStyleBackColor = true;
+            this.label60.AutoSize = true;
+            this.label60.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label60.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label60.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label60.Location = new System.Drawing.Point(587, 743);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(46, 56);
+            this.label60.TabIndex = 59;
+            this.label60.Text = "Double Letter Score";
+            this.label60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // letter2
+            // label59
             // 
-            this.letter2.Location = new System.Drawing.Point(375, 871);
-            this.letter2.Name = "letter2";
-            this.letter2.Size = new System.Drawing.Size(50, 50);
-            this.letter2.TabIndex = 3;
-            this.letter2.UseVisualStyleBackColor = true;
+            this.label59.AutoSize = true;
+            this.label59.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label59.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label59.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label59.Location = new System.Drawing.Point(163, 743);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(46, 56);
+            this.label59.TabIndex = 58;
+            this.label59.Text = "Double Letter Score";
+            this.label59.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // letter3
+            // label58
             // 
-            this.letter3.Location = new System.Drawing.Point(495, 871);
-            this.letter3.Name = "letter3";
-            this.letter3.Size = new System.Drawing.Size(50, 50);
-            this.letter3.TabIndex = 4;
-            this.letter3.UseVisualStyleBackColor = true;
+            this.label58.AutoSize = true;
+            this.label58.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label58.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label58.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label58.Location = new System.Drawing.Point(746, 743);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(50, 56);
+            this.label58.TabIndex = 57;
+            this.label58.Text = "Triple Word Score";
+            this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // letter4
+            // label57
             // 
-            this.letter4.Location = new System.Drawing.Point(615, 871);
-            this.letter4.Name = "letter4";
-            this.letter4.Size = new System.Drawing.Size(50, 50);
-            this.letter4.TabIndex = 5;
-            this.letter4.UseVisualStyleBackColor = true;
+            this.label57.AutoSize = true;
+            this.label57.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label57.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label57.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label57.Location = new System.Drawing.Point(4, 743);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(46, 56);
+            this.label57.TabIndex = 56;
+            this.label57.Text = "Triple Word Score";
+            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // letter5
+            // label56
             // 
-            this.letter5.Location = new System.Drawing.Point(735, 871);
-            this.letter5.Name = "letter5";
-            this.letter5.Size = new System.Drawing.Size(50, 50);
-            this.letter5.TabIndex = 6;
-            this.letter5.UseVisualStyleBackColor = true;
+            this.label56.AutoSize = true;
+            this.label56.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label56.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label56.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label56.Location = new System.Drawing.Point(375, 743);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(46, 56);
+            this.label56.TabIndex = 55;
+            this.label56.Text = "Triple Word Score";
+            this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // letter6
+            // label55
             // 
-            this.letter6.Location = new System.Drawing.Point(855, 871);
-            this.letter6.Name = "letter6";
-            this.letter6.Size = new System.Drawing.Size(50, 50);
-            this.letter6.TabIndex = 7;
-            this.letter6.UseVisualStyleBackColor = true;
+            this.label55.AutoSize = true;
+            this.label55.BackColor = System.Drawing.Color.Green;
+            this.label55.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label55.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label55.Location = new System.Drawing.Point(481, 690);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(46, 52);
+            this.label55.TabIndex = 54;
+            this.label55.Text = "Triple Letter Score";
+            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // letter7
+            // label54
             // 
-            this.letter7.Location = new System.Drawing.Point(990, 871);
-            this.letter7.Name = "letter7";
-            this.letter7.Size = new System.Drawing.Size(50, 50);
-            this.letter7.TabIndex = 8;
-            this.letter7.UseVisualStyleBackColor = true;
+            this.label54.AutoSize = true;
+            this.label54.BackColor = System.Drawing.Color.Green;
+            this.label54.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label54.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label54.Location = new System.Drawing.Point(269, 690);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(46, 52);
+            this.label54.TabIndex = 53;
+            this.label54.Text = "Triple Letter Score";
+            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label53.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label53.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label53.Location = new System.Drawing.Point(428, 637);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(46, 52);
+            this.label53.TabIndex = 52;
+            this.label53.Text = "Double Letter Score";
+            this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label52.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label52.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label52.Location = new System.Drawing.Point(322, 637);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(46, 52);
+            this.label52.TabIndex = 51;
+            this.label52.Text = "Double Letter Score";
+            this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.BackColor = System.Drawing.Color.Red;
+            this.label51.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label51.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label51.Location = new System.Drawing.Point(534, 531);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(46, 52);
+            this.label51.TabIndex = 50;
+            this.label51.Text = "Double Word Score";
+            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.BackColor = System.Drawing.Color.Red;
+            this.label50.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label50.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label50.Location = new System.Drawing.Point(587, 584);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(46, 52);
+            this.label50.TabIndex = 49;
+            this.label50.Text = "Double Word Score";
+            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.BackColor = System.Drawing.Color.Red;
+            this.label49.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label49.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label49.Location = new System.Drawing.Point(640, 637);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(46, 52);
+            this.label49.TabIndex = 48;
+            this.label49.Text = "Double Word Score";
+            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.BackColor = System.Drawing.Color.Red;
+            this.label48.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label48.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label48.Location = new System.Drawing.Point(693, 690);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(46, 52);
+            this.label48.TabIndex = 47;
+            this.label48.Text = "Double Word Score";
+            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.BackColor = System.Drawing.Color.Red;
+            this.label47.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label47.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label47.Location = new System.Drawing.Point(216, 531);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(46, 52);
+            this.label47.TabIndex = 46;
+            this.label47.Text = "Double Word Score";
+            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.BackColor = System.Drawing.Color.Red;
+            this.label46.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label46.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label46.Location = new System.Drawing.Point(163, 584);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(46, 52);
+            this.label46.TabIndex = 45;
+            this.label46.Text = "Double Word Score";
+            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.BackColor = System.Drawing.Color.Red;
+            this.label45.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label45.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label45.Location = new System.Drawing.Point(110, 637);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(46, 52);
+            this.label45.TabIndex = 44;
+            this.label45.Text = "Double Word Score";
+            this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label44.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label44.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label44.Location = new System.Drawing.Point(746, 584);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(50, 52);
+            this.label44.TabIndex = 43;
+            this.label44.Text = "Double Letter Score";
+            this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label43.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label43.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label43.Location = new System.Drawing.Point(375, 584);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(46, 52);
+            this.label43.TabIndex = 42;
+            this.label43.Text = "Double Letter Score";
+            this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label42.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label42.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label42.Location = new System.Drawing.Point(587, 372);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(46, 52);
+            this.label42.TabIndex = 41;
+            this.label42.Text = "Double Letter Score";
+            this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label41.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label41.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label41.Location = new System.Drawing.Point(163, 372);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(46, 52);
+            this.label41.TabIndex = 40;
+            this.label41.Text = "Double Letter Score";
+            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label40.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label40.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label40.Location = new System.Drawing.Point(110, 425);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(46, 52);
+            this.label40.TabIndex = 39;
+            this.label40.Text = "Double Letter Score";
+            this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label39.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label39.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label39.Location = new System.Drawing.Point(640, 425);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(46, 52);
+            this.label39.TabIndex = 38;
+            this.label39.Text = "Double Letter Score";
+            this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label38.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label38.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label38.Location = new System.Drawing.Point(640, 319);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(46, 52);
+            this.label38.TabIndex = 37;
+            this.label38.Text = "Double Letter Score";
+            this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label37.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label37.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label37.Location = new System.Drawing.Point(110, 319);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(46, 52);
+            this.label37.TabIndex = 36;
+            this.label37.Text = "Double Letter Score";
+            this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label36.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label36.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label36.Location = new System.Drawing.Point(746, 372);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(50, 52);
+            this.label36.TabIndex = 35;
+            this.label36.Text = "Triple Word Score";
+            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label35.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label35.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label35.Location = new System.Drawing.Point(4, 372);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(46, 52);
+            this.label35.TabIndex = 34;
+            this.label35.Text = "Triple Word Score";
+            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.BackColor = System.Drawing.Color.Green;
+            this.label34.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label34.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label34.Location = new System.Drawing.Point(693, 478);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(46, 52);
+            this.label34.TabIndex = 33;
+            this.label34.Text = "Triple Letter Score";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Green;
+            this.label33.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label33.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label33.Location = new System.Drawing.Point(57, 478);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(46, 52);
+            this.label33.TabIndex = 32;
+            this.label33.Text = "Triple Letter Score";
+            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Green;
+            this.label32.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label32.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label32.Location = new System.Drawing.Point(693, 266);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(46, 52);
+            this.label32.TabIndex = 31;
+            this.label32.Text = "Triple Letter Score";
+            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Green;
+            this.label31.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label31.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label31.Location = new System.Drawing.Point(57, 266);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(46, 52);
+            this.label31.TabIndex = 30;
+            this.label31.Text = "Triple Letter Score";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label30.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label30.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label30.Location = new System.Drawing.Point(746, 160);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(50, 52);
+            this.label30.TabIndex = 29;
+            this.label30.Text = "Double Letter Score";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label29.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label29.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label29.Location = new System.Drawing.Point(4, 584);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(46, 52);
+            this.label29.TabIndex = 28;
+            this.label29.Text = "Double Letter Score";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label28.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label28.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label28.Location = new System.Drawing.Point(4, 160);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(46, 52);
+            this.label28.TabIndex = 27;
+            this.label28.Text = "Double Letter Score";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Red;
+            this.label27.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label27.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label27.Location = new System.Drawing.Point(534, 213);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(46, 52);
+            this.label27.TabIndex = 26;
+            this.label27.Text = "Double Word Score";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.Color.Red;
+            this.label26.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label26.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label26.Location = new System.Drawing.Point(587, 160);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(46, 52);
+            this.label26.TabIndex = 25;
+            this.label26.Text = "Double Word Score";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.Red;
+            this.label25.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label25.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label25.Location = new System.Drawing.Point(640, 107);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(46, 52);
+            this.label25.TabIndex = 24;
+            this.label25.Text = "Double Word Score";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.Red;
+            this.label24.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label24.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label24.Location = new System.Drawing.Point(57, 690);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(46, 52);
+            this.label24.TabIndex = 23;
+            this.label24.Text = "Double Word Score";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.Green;
+            this.label23.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label23.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label23.Location = new System.Drawing.Point(481, 478);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(46, 52);
+            this.label23.TabIndex = 22;
+            this.label23.Text = "Triple Letter Score";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Green;
+            this.label22.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label22.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label22.Location = new System.Drawing.Point(481, 266);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(46, 52);
+            this.label22.TabIndex = 21;
+            this.label22.Text = "Triple Letter Score";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.Green;
+            this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label21.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label21.Location = new System.Drawing.Point(269, 478);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(46, 52);
+            this.label21.TabIndex = 20;
+            this.label21.Text = "Triple Letter Score";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label20.Location = new System.Drawing.Point(428, 425);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(46, 52);
+            this.label20.TabIndex = 19;
+            this.label20.Text = "Double Letter Score";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label19.Location = new System.Drawing.Point(322, 425);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(46, 52);
+            this.label19.TabIndex = 18;
+            this.label19.Text = "Double Letter Score";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label18.Location = new System.Drawing.Point(428, 319);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(46, 52);
+            this.label18.TabIndex = 17;
+            this.label18.Text = "Double Letter Score";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label17.Location = new System.Drawing.Point(322, 319);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(46, 52);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "Double Letter Score";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Green;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label16.Location = new System.Drawing.Point(269, 266);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(46, 52);
+            this.label16.TabIndex = 15;
+            this.label16.Text = "Triple Letter Score";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -308,6 +842,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Triple Word Score";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label2.Location = new System.Drawing.Point(163, 1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 52);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Double Letter Score";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
@@ -478,604 +1025,6 @@
             this.label15.Text = "Double Letter Score";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Green;
-            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label16.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label16.Location = new System.Drawing.Point(269, 266);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(46, 52);
-            this.label16.TabIndex = 15;
-            this.label16.Text = "Triple Letter Score";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label17.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label17.Location = new System.Drawing.Point(322, 319);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(46, 52);
-            this.label17.TabIndex = 16;
-            this.label17.Text = "Double Letter Score";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label18.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label18.Location = new System.Drawing.Point(428, 319);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(46, 52);
-            this.label18.TabIndex = 17;
-            this.label18.Text = "Double Letter Score";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label19.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label19.Location = new System.Drawing.Point(322, 425);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(46, 52);
-            this.label19.TabIndex = 18;
-            this.label19.Text = "Double Letter Score";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label20.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label20.Location = new System.Drawing.Point(428, 425);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(46, 52);
-            this.label20.TabIndex = 19;
-            this.label20.Text = "Double Letter Score";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.Green;
-            this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label21.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label21.Location = new System.Drawing.Point(269, 478);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(46, 52);
-            this.label21.TabIndex = 20;
-            this.label21.Text = "Triple Letter Score";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.Green;
-            this.label22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label22.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label22.Location = new System.Drawing.Point(481, 266);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(46, 52);
-            this.label22.TabIndex = 21;
-            this.label22.Text = "Triple Letter Score";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Green;
-            this.label23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label23.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label23.Location = new System.Drawing.Point(481, 478);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(46, 52);
-            this.label23.TabIndex = 22;
-            this.label23.Text = "Triple Letter Score";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.Red;
-            this.label24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label24.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label24.Location = new System.Drawing.Point(57, 690);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(46, 52);
-            this.label24.TabIndex = 23;
-            this.label24.Text = "Double Word Score";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.Color.Red;
-            this.label25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label25.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label25.Location = new System.Drawing.Point(640, 107);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(46, 52);
-            this.label25.TabIndex = 24;
-            this.label25.Text = "Double Word Score";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.Color.Red;
-            this.label26.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label26.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label26.Location = new System.Drawing.Point(587, 160);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(46, 52);
-            this.label26.TabIndex = 25;
-            this.label26.Text = "Double Word Score";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.Color.Red;
-            this.label27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label27.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label27.Location = new System.Drawing.Point(534, 213);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(46, 52);
-            this.label27.TabIndex = 26;
-            this.label27.Text = "Double Word Score";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label29.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label29.Location = new System.Drawing.Point(4, 584);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(46, 52);
-            this.label29.TabIndex = 28;
-            this.label29.Text = "Double Letter Score";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label28.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label28.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label28.Location = new System.Drawing.Point(4, 160);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(46, 52);
-            this.label28.TabIndex = 27;
-            this.label28.Text = "Double Letter Score";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label2.Location = new System.Drawing.Point(163, 1);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 52);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Double Letter Score";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label30.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label30.Location = new System.Drawing.Point(746, 160);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(50, 52);
-            this.label30.TabIndex = 29;
-            this.label30.Text = "Double Letter Score";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.Color.Green;
-            this.label31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label31.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label31.Location = new System.Drawing.Point(57, 266);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(46, 52);
-            this.label31.TabIndex = 30;
-            this.label31.Text = "Triple Letter Score";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.Green;
-            this.label32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label32.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label32.Location = new System.Drawing.Point(693, 266);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(46, 52);
-            this.label32.TabIndex = 31;
-            this.label32.Text = "Triple Letter Score";
-            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Green;
-            this.label33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label33.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label33.Location = new System.Drawing.Point(57, 478);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(46, 52);
-            this.label33.TabIndex = 32;
-            this.label33.Text = "Triple Letter Score";
-            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.BackColor = System.Drawing.Color.Green;
-            this.label34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label34.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label34.Location = new System.Drawing.Point(693, 478);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(46, 52);
-            this.label34.TabIndex = 33;
-            this.label34.Text = "Triple Letter Score";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label35.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label35.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label35.Location = new System.Drawing.Point(4, 372);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(46, 52);
-            this.label35.TabIndex = 34;
-            this.label35.Text = "Triple Word Score";
-            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label36.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label36.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label36.Location = new System.Drawing.Point(746, 372);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(50, 52);
-            this.label36.TabIndex = 35;
-            this.label36.Text = "Triple Word Score";
-            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label37.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label37.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label37.Location = new System.Drawing.Point(110, 319);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(46, 52);
-            this.label37.TabIndex = 36;
-            this.label37.Text = "Double Letter Score";
-            this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label38.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label38.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label38.Location = new System.Drawing.Point(640, 319);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(46, 52);
-            this.label38.TabIndex = 37;
-            this.label38.Text = "Double Letter Score";
-            this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label39.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label39.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label39.Location = new System.Drawing.Point(640, 425);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(46, 52);
-            this.label39.TabIndex = 38;
-            this.label39.Text = "Double Letter Score";
-            this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label40.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label40.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label40.Location = new System.Drawing.Point(110, 425);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(46, 52);
-            this.label40.TabIndex = 39;
-            this.label40.Text = "Double Letter Score";
-            this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label41.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label41.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label41.Location = new System.Drawing.Point(163, 372);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(46, 52);
-            this.label41.TabIndex = 40;
-            this.label41.Text = "Double Letter Score";
-            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label42.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label42.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label42.Location = new System.Drawing.Point(587, 372);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(46, 52);
-            this.label42.TabIndex = 41;
-            this.label42.Text = "Double Letter Score";
-            this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label43.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label43.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label43.Location = new System.Drawing.Point(375, 584);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(46, 52);
-            this.label43.TabIndex = 42;
-            this.label43.Text = "Double Letter Score";
-            this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label44.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label44.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label44.Location = new System.Drawing.Point(746, 584);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(50, 52);
-            this.label44.TabIndex = 43;
-            this.label44.Text = "Double Letter Score";
-            this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.BackColor = System.Drawing.Color.Red;
-            this.label45.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label45.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label45.Location = new System.Drawing.Point(110, 637);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(46, 52);
-            this.label45.TabIndex = 44;
-            this.label45.Text = "Double Word Score";
-            this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.BackColor = System.Drawing.Color.Red;
-            this.label46.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label46.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label46.Location = new System.Drawing.Point(163, 584);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(46, 52);
-            this.label46.TabIndex = 45;
-            this.label46.Text = "Double Word Score";
-            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.BackColor = System.Drawing.Color.Red;
-            this.label47.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label47.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label47.Location = new System.Drawing.Point(216, 531);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(46, 52);
-            this.label47.TabIndex = 46;
-            this.label47.Text = "Double Word Score";
-            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.BackColor = System.Drawing.Color.Red;
-            this.label48.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label48.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label48.Location = new System.Drawing.Point(693, 690);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(46, 52);
-            this.label48.TabIndex = 47;
-            this.label48.Text = "Double Word Score";
-            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.BackColor = System.Drawing.Color.Red;
-            this.label49.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label49.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label49.Location = new System.Drawing.Point(640, 637);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(46, 52);
-            this.label49.TabIndex = 48;
-            this.label49.Text = "Double Word Score";
-            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.BackColor = System.Drawing.Color.Red;
-            this.label50.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label50.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label50.Location = new System.Drawing.Point(587, 584);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(46, 52);
-            this.label50.TabIndex = 49;
-            this.label50.Text = "Double Word Score";
-            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.BackColor = System.Drawing.Color.Red;
-            this.label51.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label51.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label51.Location = new System.Drawing.Point(534, 531);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(46, 52);
-            this.label51.TabIndex = 50;
-            this.label51.Text = "Double Word Score";
-            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label52.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label52.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label52.Location = new System.Drawing.Point(322, 637);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(46, 52);
-            this.label52.TabIndex = 51;
-            this.label52.Text = "Double Letter Score";
-            this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label53.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label53.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label53.Location = new System.Drawing.Point(428, 637);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(46, 52);
-            this.label53.TabIndex = 52;
-            this.label53.Text = "Double Letter Score";
-            this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.BackColor = System.Drawing.Color.Green;
-            this.label54.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label54.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label54.Location = new System.Drawing.Point(269, 690);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(46, 52);
-            this.label54.TabIndex = 53;
-            this.label54.Text = "Triple Letter Score";
-            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.BackColor = System.Drawing.Color.Green;
-            this.label55.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label55.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label55.Location = new System.Drawing.Point(481, 690);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(46, 52);
-            this.label55.TabIndex = 54;
-            this.label55.Text = "Triple Letter Score";
-            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label56.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label56.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label56.Location = new System.Drawing.Point(375, 743);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(46, 56);
-            this.label56.TabIndex = 55;
-            this.label56.Text = "Triple Word Score";
-            this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label57.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label57.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label57.Location = new System.Drawing.Point(4, 743);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(46, 56);
-            this.label57.TabIndex = 56;
-            this.label57.Text = "Triple Word Score";
-            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label58.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label58.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label58.Location = new System.Drawing.Point(746, 743);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(50, 56);
-            this.label58.TabIndex = 57;
-            this.label58.Text = "Triple Word Score";
-            this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label59.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label59.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label59.Location = new System.Drawing.Point(163, 743);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(46, 56);
-            this.label59.TabIndex = 58;
-            this.label59.Text = "Double Letter Score";
-            this.label59.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label60.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label60.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label60.Location = new System.Drawing.Point(587, 743);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(46, 56);
-            this.label60.TabIndex = 59;
-            this.label60.Text = "Double Letter Score";
-            this.label60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label61
             // 
             this.label61.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1092,11 +1041,121 @@
             this.label61.Text = "l";
             this.label61.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // letter1
+            // 
+            this.letter1.Location = new System.Drawing.Point(240, 871);
+            this.letter1.Name = "letter1";
+            this.letter1.Size = new System.Drawing.Size(50, 50);
+            this.letter1.TabIndex = 2;
+            this.letter1.UseVisualStyleBackColor = true;
+            // 
+            // letter2
+            // 
+            this.letter2.Location = new System.Drawing.Point(375, 871);
+            this.letter2.Name = "letter2";
+            this.letter2.Size = new System.Drawing.Size(50, 50);
+            this.letter2.TabIndex = 3;
+            this.letter2.UseVisualStyleBackColor = true;
+            // 
+            // letter3
+            // 
+            this.letter3.Location = new System.Drawing.Point(495, 871);
+            this.letter3.Name = "letter3";
+            this.letter3.Size = new System.Drawing.Size(50, 50);
+            this.letter3.TabIndex = 4;
+            this.letter3.UseVisualStyleBackColor = true;
+            // 
+            // letter4
+            // 
+            this.letter4.Location = new System.Drawing.Point(615, 871);
+            this.letter4.Name = "letter4";
+            this.letter4.Size = new System.Drawing.Size(50, 50);
+            this.letter4.TabIndex = 5;
+            this.letter4.UseVisualStyleBackColor = true;
+            // 
+            // letter5
+            // 
+            this.letter5.Location = new System.Drawing.Point(735, 871);
+            this.letter5.Name = "letter5";
+            this.letter5.Size = new System.Drawing.Size(50, 50);
+            this.letter5.TabIndex = 6;
+            this.letter5.UseVisualStyleBackColor = true;
+            // 
+            // letter6
+            // 
+            this.letter6.Location = new System.Drawing.Point(855, 871);
+            this.letter6.Name = "letter6";
+            this.letter6.Size = new System.Drawing.Size(50, 50);
+            this.letter6.TabIndex = 7;
+            this.letter6.UseVisualStyleBackColor = true;
+            // 
+            // letter7
+            // 
+            this.letter7.Location = new System.Drawing.Point(990, 871);
+            this.letter7.Name = "letter7";
+            this.letter7.Size = new System.Drawing.Size(50, 50);
+            this.letter7.TabIndex = 8;
+            this.letter7.UseVisualStyleBackColor = true;
+            // 
+            // yourFirstDraw
+            // 
+            this.yourFirstDraw.Location = new System.Drawing.Point(66, 181);
+            this.yourFirstDraw.Name = "yourFirstDraw";
+            this.yourFirstDraw.Size = new System.Drawing.Size(100, 100);
+            this.yourFirstDraw.TabIndex = 9;
+            this.yourFirstDraw.UseVisualStyleBackColor = true;
+            // 
+            // theirFirstDraw
+            // 
+            this.theirFirstDraw.Location = new System.Drawing.Point(66, 455);
+            this.theirFirstDraw.Name = "theirFirstDraw";
+            this.theirFirstDraw.Size = new System.Drawing.Size(100, 100);
+            this.theirFirstDraw.TabIndex = 10;
+            this.theirFirstDraw.UseVisualStyleBackColor = true;
+            // 
+            // yourFirstDrawLabel
+            // 
+            this.yourFirstDrawLabel.AutoSize = true;
+            this.yourFirstDrawLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yourFirstDrawLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.yourFirstDrawLabel.Location = new System.Drawing.Point(96, 152);
+            this.yourFirstDrawLabel.Name = "yourFirstDrawLabel";
+            this.yourFirstDrawLabel.Size = new System.Drawing.Size(44, 24);
+            this.yourFirstDrawLabel.TabIndex = 11;
+            this.yourFirstDrawLabel.Text = "You";
+            // 
+            // theirFirstDrawLabel
+            // 
+            this.theirFirstDrawLabel.AutoSize = true;
+            this.theirFirstDrawLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.theirFirstDrawLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.theirFirstDrawLabel.Location = new System.Drawing.Point(71, 417);
+            this.theirFirstDrawLabel.Name = "theirFirstDrawLabel";
+            this.theirFirstDrawLabel.Size = new System.Drawing.Size(95, 24);
+            this.theirFirstDrawLabel.TabIndex = 12;
+            this.theirFirstDrawLabel.Text = "Opponent";
+            // 
+            // firstTurnLabel
+            // 
+            this.firstTurnLabel.AutoSize = true;
+            this.firstTurnLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstTurnLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.firstTurnLabel.Location = new System.Drawing.Point(71, 629);
+            this.firstTurnLabel.Name = "firstTurnLabel";
+            this.firstTurnLabel.Size = new System.Drawing.Size(139, 24);
+            this.firstTurnLabel.TabIndex = 13;
+            this.firstTurnLabel.Text = "Who goes first?";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 985);
+            this.Controls.Add(this.firstTurnLabel);
+            this.Controls.Add(this.theirFirstDrawLabel);
+            this.Controls.Add(this.yourFirstDrawLabel);
+            this.Controls.Add(this.theirFirstDraw);
+            this.Controls.Add(this.yourFirstDraw);
             this.Controls.Add(this.letter7);
             this.Controls.Add(this.letter6);
             this.Controls.Add(this.letter5);
@@ -1193,6 +1252,11 @@
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Button yourFirstDraw;
+        private System.Windows.Forms.Button theirFirstDraw;
+        private System.Windows.Forms.Label yourFirstDrawLabel;
+        private System.Windows.Forms.Label theirFirstDrawLabel;
+        private System.Windows.Forms.Label firstTurnLabel;
     }
 }
 

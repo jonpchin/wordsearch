@@ -21,6 +21,17 @@ namespace Scrabble
         {
             InitializeComponent();
             game = new Game();
+
+            string yourLetter, theirLetter;
+
+            do //Do while loop prevents letters from being the same for first draw
+            {
+                yourLetter = game.DrawLetter();
+                theirLetter = game.DrawLetter();
+            } while (yourLetter.Equals(theirLetter));
+            yourFirstDraw.Text = yourLetter; //Display letters and whose turn in labels and buttons
+            theirFirstDraw.Text = theirLetter;
+            firstTurnLabel.Text = game.WhoseTurn(yourLetter, theirLetter);
         }
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)

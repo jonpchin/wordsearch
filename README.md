@@ -1,2 +1,2 @@
 # Scrabble
-Scrabble Solver in C#
+Scrabble Game in C#

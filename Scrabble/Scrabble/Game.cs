@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,8 +30,11 @@ namespace Scrabble
 
         public Game()
         {
+            
             SearchWord search = new SearchWord();
             rand = new Random();
+            //starts a new game
+            NewGame();
         }
 
         //intitalizes backend board to blanks and setups the 100 tiles
@@ -38,7 +42,7 @@ namespace Scrabble
         public void NewGame()
         {
             
-            for(int i=0; i<ROWS; i++)
+            for (int i=0; i<ROWS; i++)
             {
                 for(int j=0; j<COLS; j++)
                 {
@@ -107,6 +111,7 @@ namespace Scrabble
                 deckOfTiles.Add(new Tile('E', 1));
                 
             }
+           
             //shuffles deck
             shuffleTiles();
             //used for testing purpose only
@@ -134,13 +139,15 @@ namespace Scrabble
         {
             Random rand = new Random();
             //generates a random number in between 0 and 99 
-            int value1 = rand.Next(100);
-            int value2 = rand.Next(100);
+            
             Tile temp;
 
             //randomly pick two values and make 200 swaps to simulate shuffling
             for(int i=0; i<200; i++)
             {
+                int value1 = rand.Next(100);
+                int value2 = rand.Next(100);
+
                 temp = deckOfTiles[value1];
                 deckOfTiles[value1] = deckOfTiles[value2];
                 deckOfTiles[value2] = temp; 
@@ -153,7 +160,7 @@ namespace Scrabble
         {
             for(int i=0; i<100; i++)
             {
-                Console.WriteLine("Tile Letter : " + deckOfTiles[i].getLetter() + " Points " + deckOfTiles[i].getScore());
+                Debug.WriteLine("Tile Letter : " + deckOfTiles[i].getLetter() + " Points " + deckOfTiles[i].getScore());
             }
         }
         

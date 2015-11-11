@@ -116,14 +116,25 @@ namespace Scrabble
             shuffleTiles();
             //used for testing purpose only
             printDeck();
+            //loads seven tiles into starting hand of player and computer
+            setupPlayerHand();
+            setupComputerHand();
 
 
         }
-        //we may not need this function, the tile frequency I used above is what is 
-        //actually used in the game, we will just shuffle the deck of Tiles to randomize it
+        //function used to randomly select a player
         public string DrawLetter()
         {
             return ((char)('A' + rand.Next(0, 26))).ToString(); //Returns random letter A-Z
+        }
+        
+        //used to draw a random tile from the Tile deck
+        public Tile drawTile()
+        {
+            Tile temp = deckOfTiles[deckOfTiles.Count - 1];
+            //deletes the last tile in the deck
+            deckOfTiles.RemoveAt(deckOfTiles.Count - 1);
+            return temp;
         }
 
         public string WhoseTurn(string yourLetter, string theirLetter)
@@ -161,6 +172,22 @@ namespace Scrabble
             for(int i=0; i<100; i++)
             {
                 Debug.WriteLine("Tile Letter : " + deckOfTiles[i].getLetter() + " Points " + deckOfTiles[i].getScore());
+            }
+        }
+        //sets up the first seven tiles for the computers hand
+        public void setupComputerHand()
+        {
+            for(int i=0; i<7; i++)
+            {
+                computerHand.Add(drawTile());
+            }
+        }
+        //sets up the first seven tiles for the players hand
+        public void setupPlayerHand()
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                playerHand.Add(drawTile());
             }
         }
         

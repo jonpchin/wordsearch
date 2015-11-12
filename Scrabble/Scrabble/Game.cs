@@ -14,6 +14,7 @@ namespace Scrabble
     class Game
     {
         Random rand;
+        SearchWord search; //Holds dictionary of words and word check functions
         //board is 15x15
         private const int ROWS = 15;
         private const int COLS = 15;
@@ -33,7 +34,7 @@ namespace Scrabble
         public Game()
         {
             
-            SearchWord search = new SearchWord();
+            search = new SearchWord();
             rand = new Random();
             //starts a new game
             NewGame();
@@ -193,7 +194,53 @@ namespace Scrabble
             }
         }
         
+        //Function takes two lists. One for x coordinates of added tiles, one more y coordinates
+        //Searches left and up for all buildable words from each added tile
+        //Then checks each built word to see if it is valid
+        public void CheckWords(List<int> playedX, List<int> playedY)
+        {
+            for (int i = 0; i < playedX.Count; i++) //Checks each column for full word
+            {
+                string word = "";
+                char tile = scrabbleBoard[playedY[i], playedX[i]];
+                int j = playedY[i] - 1; //Move up a row
 
+                if (j == 0) //Prevent Out of bounds error in scrabble board array
+                    break;
+                
+                while (tile != ' ')
+                {
+                    tile = scrabbleBoard[playedY[j--], playedX[i]]; //Get char at tile position, moving up until empty tile found
+                    word += tile;                                   //append each tile char to string
+                }
+                
+                word = word.Reverse().ToString(); //Chars were added in reverse order. Reverse back to normal order 
+                search.ValidWord(word); //checks if valid word and returns true or false
+
+                //need to add function to get point values and add them here
+            }
+
+            for (int i = 0; i < playedY.Count; i++) //identical to above loop, but instead checks words to the LEFT
+            {
+                string word = "";
+                char tile = scrabbleBoard[playedY[i], playedX[i]];
+                int j = playedX[i] - 1;
+
+                if (j == 0)
+                    break;
+
+                while (tile != ' ')
+                {
+                    tile = scrabbleBoard[playedY[i], playedX[j--]]; //adds tiles to the LEFT of the played tile
+                    word += tile;
+                }
+
+                word = word.Reverse().ToString(); 
+                search.ValidWord(word); //check if valid word and return true or false
+
+                //need to add function to get point values and add them here
+            }
+        }
         
     }
 }

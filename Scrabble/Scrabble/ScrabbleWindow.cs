@@ -17,21 +17,29 @@ namespace Scrabble
         and interacts with the Game class
         */
         Game game;
+        //global variable for 2D array of labels for front end
+        public static Button[,] frontEndBoard = new Button[15, 15];
+      
         public MainWindow()
         {
             InitializeComponent();
             game = new Game();
 
-            string yourLetter, theirLetter;
 
-            do //Do while loop prevents letters from being the same for first draw
+            int i;
+            int j;
+            for (i = 0; i < 15; i++)
             {
-                yourLetter = game.DrawLetter();
-                theirLetter = game.DrawLetter();
-            } while (yourLetter.Equals(theirLetter));
-            yourFirstDraw.Text = yourLetter; //Display letters and whose turn in labels and buttons
-            theirFirstDraw.Text = theirLetter;
-            firstTurnLabel.Text = game.WhoseTurn(yourLetter, theirLetter);
+                for (j = 0; j < 15; j++)
+                {
+                    frontEndBoard[i, j] = new Button();
+                    frontEndBoard[i, j].Text = "" + i*j;
+                    frontEndBoard[i, j].Size = new Size(40, 40);
+                    frontEndBoard[i, j].Location = new Point(j * 30+40, i * 30+40);
+                    this.Controls.Add(frontEndBoard[i, j]);
+                }
+            }
+
         }
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -42,6 +50,11 @@ namespace Scrabble
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit(); //Exits program
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -27,7 +27,9 @@ namespace Scrabble
         public static List<Tile> playerHand = new List<Tile>();
         //computers hand of seven tiles
         public static List<Tile> computerHand = new List<Tile>();
-
+        //list of tiles that are selected
+        public static List<Tile> selectedHand = new List<Tile>();
+ 
         public Game()
         {
             

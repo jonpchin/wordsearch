@@ -31,6 +31,7 @@ namespace Scrabble
         public static List<Tile> ComputerHand = new List<Tile>();
         //list of tiles that are selected
         public static List<Tile> SelectedHand = new List<Tile>();
+
         
 
         public Game()
@@ -177,7 +178,7 @@ namespace Scrabble
         {
             for(int i=0; i<100; i++)
             {
-                Debug.WriteLine("Tile Letter : " + DeckOfTiles[i].getLetter() + " Points " + DeckOfTiles[i].getScore());
+                Debug.WriteLine("Tile Letter : " + DeckOfTiles[i].GetLetter() + " Points " + DeckOfTiles[i].GetScore());
             }
         }
         //sets up the first seven tiles for the computers hand

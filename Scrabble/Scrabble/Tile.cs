@@ -8,25 +8,40 @@ namespace Scrabble
 {
     //represents a tile with a letter that a player can place on the board
 
-    class Tile
+    public class Tile
     {
         String letter;
         int score;
+    
 
         public Tile(String thisLetter, int thisScore)
         {
             letter = thisLetter;
             score = thisScore;
         }
-        
-        public String getLetter()
+        public Tile(String thisLetter)
+        {
+            letter = thisLetter;
+           
+        }
+
+        public Tile()
+        {
+        }
+
+        public String GetLetter()
         {
             return letter;
         }
-        public int getScore()
+        public int GetScore()
         {
             return score;
         }
+        public void SetLetter(String thisLetter)
+        {
+            letter = thisLetter;
+        }
+      
 
 
     }

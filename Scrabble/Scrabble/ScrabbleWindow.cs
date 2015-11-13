@@ -21,7 +21,10 @@ namespace Scrabble
         public static Button[,] FrontEndBoard = new Button[15, 15];
         //list of seven Buttons representing players hand
         public static Button[] PlayerHandButtons = new Button[7];
-        
+        //this is the tile the player selects from his hand
+        public static String SelectedTile;
+        //keeps track of which index the Tile that was selected
+        public static int SelectedIndex;
 
         public MainWindow()
         {
@@ -39,6 +42,28 @@ namespace Scrabble
                     FrontEndBoard[i, j].Text = " ";
                     FrontEndBoard[i, j].Size = new Size(40, 40);
                     FrontEndBoard[i, j].Location = new Point(j * 30+40, i * 30+40);
+
+                    int TempI = i;
+                    int TempJ = j;
+
+                    //this event happens when one of the buttons on the front board is clicked
+                    FrontEndBoard[i, j].Click += delegate (System.Object o, System.EventArgs e)
+                    {
+                        //if there is already a letter on the frontBoard then its removed
+                        //placed back into the players hand
+                        if(FrontEndBoard[TempI,TempJ].Text == " ")
+                        {
+                            FrontEndBoard[TempI, TempJ].Text = SelectedTile;
+                            SelectedTile = " ";
+                            
+                        }
+                        else
+                        {
+                            PlayerHandButtons[SelectedIndex].Text = Game.PlayerHand[SelectedIndex].GetLetter();
+                            FrontEndBoard[TempI, TempJ].Text = " ";
+                        }
+                        
+                    };
                     this.Controls.Add(FrontEndBoard[i, j]);
                 }
             }
@@ -48,14 +73,27 @@ namespace Scrabble
             {
                 Game.PlayerHand.Add(Game.DrawTile());
                 PlayerHandButtons[i] = new Button();
-                PlayerHandButtons[i].Text = Game.PlayerHand[i].getLetter();
+                PlayerHandButtons[i].Text = Game.PlayerHand[i].GetLetter();
                 PlayerHandButtons[i].Size = new Size(40, 40);
                 PlayerHandButtons[i].Location = new Point(i * 50 + 20, 510);
+                int Temp = i;
+                //this event happens when a player clicks on one his seven tiles in his hand
+                PlayerHandButtons[i].Click += delegate (System.Object o, System.EventArgs e)
+                {
+                    SelectedTile = PlayerHandButtons[Temp].Text;
+                    SelectedIndex = Temp;
+                    PlayerHandButtons[Temp].Text = " ";
+                };
                 this.Controls.Add(PlayerHandButtons[i]);
             }
 
 
         }
+        
+        
+
+        
+       
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -71,6 +109,9 @@ namespace Scrabble
         {
 
         }
+
+        
+        
 
         
         

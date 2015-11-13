@@ -18,8 +18,11 @@ namespace Scrabble
         */
         Game game;
         //global variable for 2D array of labels for front end
-        public static Button[,] frontEndBoard = new Button[15, 15];
-      
+        public static Button[,] FrontEndBoard = new Button[15, 15];
+        //list of seven Buttons representing players hand
+        public static Button[] PlayerHandButtons = new Button[7];
+        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,13 +35,25 @@ namespace Scrabble
             {
                 for (j = 0; j < 15; j++)
                 {
-                    frontEndBoard[i, j] = new Button();
-                    frontEndBoard[i, j].Text = "" + i*j;
-                    frontEndBoard[i, j].Size = new Size(40, 40);
-                    frontEndBoard[i, j].Location = new Point(j * 30+40, i * 30+40);
-                    this.Controls.Add(frontEndBoard[i, j]);
+                    FrontEndBoard[i, j] = new Button();
+                    FrontEndBoard[i, j].Text = " ";
+                    FrontEndBoard[i, j].Size = new Size(40, 40);
+                    FrontEndBoard[i, j].Location = new Point(j * 30+40, i * 30+40);
+                    this.Controls.Add(FrontEndBoard[i, j]);
                 }
             }
+
+            //sets up the first seven tiles for the players hand
+            for (i = 0; i < 7; i++)
+            {
+                Game.PlayerHand.Add(Game.DrawTile());
+                PlayerHandButtons[i] = new Button();
+                PlayerHandButtons[i].Text = Game.PlayerHand[i].getLetter();
+                PlayerHandButtons[i].Size = new Size(40, 40);
+                PlayerHandButtons[i].Location = new Point(i * 50 + 20, 510);
+                this.Controls.Add(PlayerHandButtons[i]);
+            }
+
 
         }
 
@@ -56,5 +71,10 @@ namespace Scrabble
         {
 
         }
+
+        
+        
+
+
     }
 }

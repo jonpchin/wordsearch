@@ -10,16 +10,16 @@ namespace Scrabble
 
     class Tile
     {
-        char letter;
+        String letter;
         int score;
 
-        public Tile(char thisLetter, int thisScore)
+        public Tile(String thisLetter, int thisScore)
         {
             letter = thisLetter;
             score = thisScore;
         }
         
-        public char getLetter()
+        public String getLetter()
         {
             return letter;
         }

@@ -22,9 +22,9 @@ namespace Scrabble
         //list of seven Buttons representing players hand
         public static Button[] PlayerHandButtons = new Button[7];
         //this is the tile the player selects from his hand
-        public static String SelectedTile;
-        //keeps track of which index the Tile that was selected
-        public static int SelectedIndex;
+        public static string SelectedTile;
+        //List of tiles that are placed on the board
+        public static List<string> PlacedTiles = new List<string>();
 
         public MainWindow()
         {
@@ -49,18 +49,46 @@ namespace Scrabble
                     //this event happens when one of the buttons on the front board is clicked
                     FrontEndBoard[i, j].Click += delegate (System.Object o, System.EventArgs e)
                     {
+                        
+                        string BoardLetter = " ";
+                  
+                        int IndexValue = 0;
+
                         //if there is already a letter on the frontBoard then its removed
                         //placed back into the players hand
-                        if(FrontEndBoard[TempI,TempJ].Text == " ")
+                        if (FrontEndBoard[TempI,TempJ].Text == " ")
                         {
                             FrontEndBoard[TempI, TempJ].Text = SelectedTile;
+                            PlacedTiles.Add(SelectedTile);
                             SelectedTile = " ";
                             
                         }
                         else
                         {
-                            PlayerHandButtons[SelectedIndex].Text = Game.PlayerHand[SelectedIndex].GetLetter();
+                            //look through all placed Tiles and then put it back in the hand
+                            foreach (string item in PlacedTiles)
+                            {
+                                
+                                if (FrontEndBoard[TempI, TempJ].Text == item)
+                                {   
+                                    //searchs for empty tile in players hand
+                                    for(int k=0; k<7; k++)
+                                    {
+                                        if (PlayerHandButtons[k].Text == " ")
+                                        {
+                                            IndexValue = k;
+                                            break;
+                                        }
+                                    }
+                                    BoardLetter = item;
+                                    PlacedTiles.Remove(item);
+                                    break;
+                                }
+                                IndexValue++;
+                            }
+                            PlayerHandButtons[IndexValue].Text = BoardLetter;
                             FrontEndBoard[TempI, TempJ].Text = " ";
+                            
                         }
                         
                     };
@@ -80,9 +108,19 @@ namespace Scrabble
                 //this event happens when a player clicks on one his seven tiles in his hand
                 PlayerHandButtons[i].Click += delegate (System.Object o, System.EventArgs e)
                 {
-                    SelectedTile = PlayerHandButtons[Temp].Text;
-                    SelectedIndex = Temp;
-                    PlayerHandButtons[Temp].Text = " ";
+                    //if a blank tile is selected then place place the tile back into the hand
+                    if(PlayerHandButtons[Temp].Text == " ")
+                    {
+                        PlayerHandButtons[Temp].Text = SelectedTile;
+                        SelectedTile = " ";
+                    }
+                    else
+                    {
+                        //tile will get ready before being placed on the board
+                        SelectedTile = PlayerHandButtons[Temp].Text;
+                        PlayerHandButtons[Temp].Text = " ";
+                    }
+                    
                 };
                 this.Controls.Add(PlayerHandButtons[i]);
             }

@@ -22,7 +22,7 @@ namespace Scrabble
         //list of seven Buttons representing players hand
         public static Button[] PlayerHandButtons = new Button[7];
         //this is the tile the player selects from his hand
-        public static string SelectedTile;
+        public static string SelectedTile = " ";
         //List of tiles that are placed on the board
         public static List<string> PlacedTiles = new List<string>();
 
@@ -31,6 +31,15 @@ namespace Scrabble
             InitializeComponent();
             game = new Game();
 
+            //setups output textbox
+            TextBox OutPutTextBox = new TextBox();
+            OutPutTextBox.Name = "Scrabble Console";
+            //sets the location of output textbox
+            OutPutTextBox.Left = 550;
+            OutPutTextBox.Top = 40;
+            //sets size of output textbox
+            OutPutTextBox.AutoSize = false;
+            OutPutTextBox.Size = new System.Drawing.Size(300, 450);
 
             int i;
             int j;
@@ -93,6 +102,7 @@ namespace Scrabble
                         
                     };
                     this.Controls.Add(FrontEndBoard[i, j]);
+                    this.Controls.Add(OutPutTextBox);
                 }
             }
 
@@ -114,6 +124,12 @@ namespace Scrabble
                         PlayerHandButtons[Temp].Text = SelectedTile;
                         SelectedTile = " ";
                     }
+                    //prevents players from removing multiple tiles from hand without placing on board
+                    else if (SelectedTile != " ")
+                    {
+
+                    }
+                    
                     else
                     {
                         //tile will get ready before being placed on the board

@@ -25,6 +25,8 @@ namespace Scrabble
         public static string SelectedTile = " ";
         //List of tiles that are placed on the board
         public static List<string> PlacedTiles = new List<string>();
+        //x and y coordinates of all the placed tiles. used to pass into checkWord function
+        public static List<KeyValuePair<int, int>> CoordinatePairs = new List<KeyValuePair<int, int>>();
 
         public MainWindow()
         {
@@ -32,7 +34,7 @@ namespace Scrabble
             game = new Game();
 
             //setups output textbox
-            TextBox OutPutTextBox = new TextBox();
+            RichTextBox OutPutTextBox = new RichTextBox();
             OutPutTextBox.Name = "Scrabble Console";
             //sets the location of output textbox
             OutPutTextBox.Left = 550;
@@ -43,6 +45,46 @@ namespace Scrabble
 
             int i;
             int j;
+            //skips players turn
+            Button Pass = new Button();
+            Pass.Text = "Pass";
+            Pass.Size = new Size(100, 40);
+            Pass.Location = new Point(550, 500);
+
+            Pass.Click += delegate (System.Object o, System.EventArgs e)
+            {
+                OutPutTextBox.Text += "You pass.\n";
+               
+            };
+            this.Controls.Add(Pass);
+
+            //remove all selected tiles to get new tiles
+            Button Discard = new Button();
+            Discard.Text = "Discard";
+            Discard.Size = new Size(100, 40);
+            Discard.Location = new Point(650, 500);
+            
+            Discard.Click += delegate (System.Object o, System.EventArgs e)
+            {
+                OutPutTextBox.Text += "You remove your tiles and get new ones.\n";
+                      
+            };
+            this.Controls.Add(Discard);
+
+            //check if all tiles placed on the board are valid words
+            Button Submit = new Button();
+            Submit.Text = "Submit";
+            Submit.Size = new Size(100, 40);
+            Submit.Location = new Point(750, 500);
+
+            Submit.Click += delegate (System.Object o, System.EventArgs e)
+            {
+                //call checkWords function
+
+            };
+
+            this.Controls.Add(Submit);
+
             for (i = 0; i < 15; i++)
             {
                 for (j = 0; j < 15; j++)
@@ -67,8 +109,13 @@ namespace Scrabble
                         //placed back into the players hand
                         if (FrontEndBoard[TempI,TempJ].Text == " ")
                         {
+                            //updating backend Board by placing string
+                            Game.ScrabbleBoard[TempI, TempJ] = BoardLetter;
+                            //updating frontBoard
                             FrontEndBoard[TempI, TempJ].Text = SelectedTile;
                             PlacedTiles.Add(SelectedTile);
+                            //storing x and y coordinates to be called when checking for valid words
+                            CoordinatePairs.Add(new KeyValuePair<int, int>(TempI, TempJ));
                             SelectedTile = " ";
                             
                         }
@@ -90,13 +137,20 @@ namespace Scrabble
                                         }
                                     }
                                     BoardLetter = item;
+                                    
                                     PlacedTiles.Remove(item);
                                     break;
                                 }
                                 IndexValue++;
                             }
-                            PlayerHandButtons[IndexValue].Text = BoardLetter;
+                            //updating backend Board by removing string
+                            Game.ScrabbleBoard[TempI, TempJ] = " ";
+                            //updating frontend Board
                             FrontEndBoard[TempI, TempJ].Text = " ";
+                            PlayerHandButtons[IndexValue].Text = BoardLetter;
+                            
+                            //removes x and y coordinates from CoordinatePairs
+                            CoordinatePairs.Remove(new KeyValuePair<int, int>(TempI, TempJ));
                             
                         }
                         
@@ -113,7 +167,7 @@ namespace Scrabble
                 PlayerHandButtons[i] = new Button();
                 PlayerHandButtons[i].Text = Game.PlayerHand[i].GetLetter();
                 PlayerHandButtons[i].Size = new Size(40, 40);
-                PlayerHandButtons[i].Location = new Point(i * 50 + 20, 510);
+                PlayerHandButtons[i].Location = new Point(i * 50 + 90, 510);
                 int Temp = i;
                 //this event happens when a player clicks on one his seven tiles in his hand
                 PlayerHandButtons[i].Click += delegate (System.Object o, System.EventArgs e)

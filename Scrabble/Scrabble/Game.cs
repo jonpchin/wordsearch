@@ -21,7 +21,7 @@ namespace Scrabble
         private const int COLS = 15;
 
         //global static board array, yes its bad practice but its convienent 
-        public static char[,] ScrabbleBoard = new char[ROWS, COLS];
+        public static String[,] ScrabbleBoard = new String[ROWS, COLS];
         //dynamic array of chars for deck of Tiles
         public static List<Tile> DeckOfTiles = new List<Tile>();
 
@@ -53,7 +53,7 @@ namespace Scrabble
                 for(int j=0; j<COLS; j++)
                 {
                     //intitalizing board to default blank chars
-                    ScrabbleBoard[i,j] = ' ';
+                    ScrabbleBoard[i,j] = " ";
                 }
             }
             //adding letter frequency into deck of Tiles. Total is 100 tiles.
@@ -191,44 +191,46 @@ namespace Scrabble
         }
         
 
-        //Function takes two lists. One for x coordinates of added tiles, one more y coordinates
+        //Function takes two one list of Pairs.
         //Searches left and up for all buildable words from each added tile
         //Then checks each built word to see if it is valid
-        public void CheckWords(List<int> playedX, List<int> playedY)
+        // .Value is y coordinat .Key is x coordinate
+        // 
+        public void CheckWords(List<KeyValuePair<int, int>> CoordinatePairs)
         {
-            for (int i = 0; i < playedX.Count; i++) //Checks each column for full word
+            for (int i = 0; i < CoordinatePairs.Count; i++) //Checks each column for full word
             {
                 string word = "";
-                char tile = ScrabbleBoard[playedY[i], playedX[i]];
-                int j = playedY[i] - 1; //Move up a row
+                string tile = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
+                int j = CoordinatePairs[i].Key - 1; //Move up a row
 
-                if (j == 0) //Prevent Out of bounds error in scrabble board array
+                if (j == -1) //Prevent Out of bounds error in scrabble board array
                     break;
                 
-                while (tile != ' ')
+                while (tile != " ")
                 {
-                    tile = ScrabbleBoard[playedY[j--], playedX[i]]; //Get char at tile position, moving up until empty tile found
-                    word += tile;                                   //append each tile char to string
+                    tile = ScrabbleBoard[CoordinatePairs[j--].Key, CoordinatePairs[i].Value]; //Get char at tile position, moving up until empty tile found
+                    word =  tile + word;                                   //append each tile char to string
                 }
                 
-                word = word.Reverse().ToString(); //Chars were added in reverse order. Reverse back to normal order 
+                //Chars were added in reverse order. Reverse back to normal order 
                 search.ValidWord(word); //checks if valid word and returns true or false
 
                 //need to add function to get point values and add them here
             }
 
-            for (int i = 0; i < playedY.Count; i++) //identical to above loop, but instead checks words to the LEFT
+            for (int i = 0; i < CoordinatePairs.Count; i++) //identical to above loop, but instead checks words to the LEFT
             {
                 string word = "";
-                char tile = ScrabbleBoard[playedY[i], playedX[i]];
-                int j = playedX[i] - 1;
+                string tile = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
+                int j = CoordinatePairs[i].Value - 1;
 
-                if (j == 0)
+                if (j == -1)
                     break;
 
-                while (tile != ' ')
+                while (tile != " ")
                 {
-                    tile = ScrabbleBoard[playedY[i], playedX[j--]]; //adds tiles to the LEFT of the played tile
+                    tile = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[j--].Value]; //adds tiles to the LEFT of the played tile
                     word += tile;
                 }
 

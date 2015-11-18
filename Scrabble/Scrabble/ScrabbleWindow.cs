@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace Scrabble
 {
@@ -21,12 +22,13 @@ namespace Scrabble
         public static Button[,] FrontEndBoard = new Button[15, 15];
         //list of seven Buttons representing players hand
         public static Button[] PlayerHandButtons = new Button[7];
-        //this is the tile the player selects from his hand
-        public static string SelectedTile = " ";
+        //list of tiles a player selects from his hand
+        public static List<string> SelectedTiles = new List<string>();
         //List of tiles that are placed on the board
         public static List<string> PlacedTiles = new List<string>();
         //x and y coordinates of all the placed tiles. used to pass into checkWord function
         public static List<KeyValuePair<int, int>> CoordinatePairs = new List<KeyValuePair<int, int>>();
+        private object txtResult;
 
         public MainWindow()
         {
@@ -101,53 +103,69 @@ namespace Scrabble
                     FrontEndBoard[i, j].Click += delegate (System.Object o, System.EventArgs e)
                     {
                         
-                        string BoardLetter = " ";
-                  
+
                         int IndexValue = 0;
 
                         //if there is already a letter on the frontBoard then its removed
                         //placed back into the players hand
                         if (FrontEndBoard[TempI,TempJ].Text == " ")
                         {
-                            //updating backend Board by placing string
-                            Game.ScrabbleBoard[TempI, TempJ] = BoardLetter;
-                            //updating frontBoard
-                            FrontEndBoard[TempI, TempJ].Text = SelectedTile;
-                            PlacedTiles.Add(SelectedTile);
-                            //storing x and y coordinates to be called when checking for valid words
-                            CoordinatePairs.Add(new KeyValuePair<int, int>(TempI, TempJ));
-                            SelectedTile = " ";
+                            
+                            //updating frontBoard, checking to make sure list is not empty
+                            if(SelectedTiles.Count != 0)
+                            {
+                                //updating backend Board by placing string
+                                Game.ScrabbleBoard[TempI, TempJ] = SelectedTiles[0];
+                                FrontEndBoard[TempI, TempJ].Text = SelectedTiles[0];
+                                int counter = 0;
+                                int index = 1;
+                                //searches for letter in the SelectedTiles list to be disabled
+                                foreach (Button item in PlayerHandButtons)
+                                {
+                                    if (SelectedTiles[0] == item.Text && item.Enabled==true)
+                                    {
+                                        index = counter;
+                                        break;
+                                    }
+                                    counter++;
+                                }
+                                //disables the tile in the hand that was placed on the board
+                                PlayerHandButtons[index].BackColor = SystemColors.ButtonFace;
+                                PlayerHandButtons[index].UseVisualStyleBackColor = true;
+                                PlayerHandButtons[index].Enabled = false;
+
+                                PlacedTiles.Add(SelectedTiles[0]);
+                                SelectedTiles.RemoveAt(0);
+
+                                //storing x and y coordinates to be called when checking for valid words
+                                CoordinatePairs.Add(new KeyValuePair<int, int>(TempI, TempJ));
+                                
+                            }
+                            
                             
                         }
                         else
                         {
-                            //look through all placed Tiles and then put it back in the hand
-                            foreach (string item in PlacedTiles)
+
+                            //searchs for disabled tile in players hand
+                            for(int k=0; k<7; k++)
                             {
-                                
-                                if (FrontEndBoard[TempI, TempJ].Text == item)
-                                {   
-                                    //searchs for empty tile in players hand
-                                    for(int k=0; k<7; k++)
-                                    {
-                                        if (PlayerHandButtons[k].Text == " ")
-                                        {
-                                            IndexValue = k;
-                                            break;
-                                        }
-                                    }
-                                    BoardLetter = item;
-                                    
-                                    PlacedTiles.Remove(item);
+                                if (PlayerHandButtons[k].Text == FrontEndBoard[TempI, TempJ].Text && PlayerHandButtons[k].Enabled == false)
+                                {
+                                    IndexValue = k;
                                     break;
                                 }
                                 IndexValue++;
                             }
+                                    
+                                    
+                            PlacedTiles.Remove(FrontEndBoard[TempI, TempJ].Text);
+
                             //updating backend Board by removing string
                             Game.ScrabbleBoard[TempI, TempJ] = " ";
                             //updating frontend Board
                             FrontEndBoard[TempI, TempJ].Text = " ";
-                            PlayerHandButtons[IndexValue].Text = BoardLetter;
+                            PlayerHandButtons[IndexValue].Enabled = true;
                             
                             //removes x and y coordinates from CoordinatePairs
                             CoordinatePairs.Remove(new KeyValuePair<int, int>(TempI, TempJ));
@@ -172,23 +190,29 @@ namespace Scrabble
                 //this event happens when a player clicks on one his seven tiles in his hand
                 PlayerHandButtons[i].Click += delegate (System.Object o, System.EventArgs e)
                 {
-                    //if a blank tile is selected then place place the tile back into the hand
+                    //if a blank tile is selected then allow player to enter the desired letter
                     if(PlayerHandButtons[Temp].Text == " ")
                     {
-                        PlayerHandButtons[Temp].Text = SelectedTile;
-                        SelectedTile = " ";
-                    }
-                    //prevents players from removing multiple tiles from hand without placing on board
-                    else if (SelectedTile != " ")
+                        //make sure to add check to ensure only one letter is entered and not digits or strings
+                        string ReturnedLetter = Microsoft.VisualBasic.Interaction.InputBox("Enter a Letter", "Enter Letter", "Enter a letter please", 200, 200);
+                        PlayerHandButtons[Temp].Text = ReturnedLetter;
+                     }
+                    //if button is already selected then deselect it
+                    else if (PlayerHandButtons[Temp].BackColor == Color.Green)
                     {
-
+                        PlayerHandButtons[Temp].BackColor = SystemColors.ButtonFace;
+                        PlayerHandButtons[Temp].UseVisualStyleBackColor = true;
+                   
+                        //searches for letter in the SelectedTiles list to be removed
+                        SelectedTiles.Remove(PlayerHandButtons[Temp].Text);
                     }
                     
                     else
                     {
                         //tile will get ready before being placed on the board
-                        SelectedTile = PlayerHandButtons[Temp].Text;
-                        PlayerHandButtons[Temp].Text = " ";
+                        SelectedTiles.Add(PlayerHandButtons[Temp].Text);
+                        //background color of button will change to show it is selected
+                        PlayerHandButtons[Temp].BackColor = Color.Green;
                     }
                     
                 };
@@ -218,11 +242,10 @@ namespace Scrabble
 
         }
 
-        
-        
 
-        
-        
+       
+
+
 
 
     }

@@ -66,7 +66,7 @@ namespace Scrabble
             for (int i=0; i < 2; i++)
             {
                 //two blank(wild) tiles are added which are worth zero points
-                DeckOfTiles.Add(new Tile("", 0));
+                DeckOfTiles.Add(new Tile(" ", 0));
                 DeckOfTiles.Add(new Tile("B", 3));
                 DeckOfTiles.Add(new Tile("C", 3));
                 DeckOfTiles.Add(new Tile("M", 3));

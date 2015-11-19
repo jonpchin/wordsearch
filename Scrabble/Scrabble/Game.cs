@@ -14,14 +14,13 @@ namespace Scrabble
 
     class Game
     {
-        Random rand;
-        SearchWord search; //Holds dictionary of words and word check functions
+        
         //board is 15x15
         private const int ROWS = 15;
         private const int COLS = 15;
 
         //global static board array, yes its bad practice but its convienent 
-        public static String[,] ScrabbleBoard = new String[ROWS, COLS];
+        public static string[,] ScrabbleBoard = new String[ROWS, COLS];
         //dynamic array of chars for deck of Tiles
         public static List<Tile> DeckOfTiles = new List<Tile>();
 
@@ -36,9 +35,8 @@ namespace Scrabble
 
         public Game()
         {
-            
-            search = new SearchWord();
-            rand = new Random();
+            //at the start of the application read in all the words into dictionary
+            SearchWord.MakeDictionary();
             //starts a new game
             NewGame();
         }
@@ -131,6 +129,7 @@ namespace Scrabble
         //function used to randomly select a player
         public string DrawLetter()
         {
+            Random rand = new Random();
             return ((char)('A' + rand.Next(0, 26))).ToString(); //Returns random letter A-Z
         }
         
@@ -194,27 +193,38 @@ namespace Scrabble
         //Function takes two one list of Pairs.
         //Searches left and up for all buildable words from each added tile
         //Then checks each built word to see if it is valid
-        // .Value is y coordinat .Key is x coordinate
-        // 
-        public void CheckWords(List<KeyValuePair<int, int>> CoordinatePairs)
+        // .Value is y coordinate .Key is x coordinate
+        public static void CheckWords(List<KeyValuePair<int, int>> CoordinatePairs)
         {
+            //these are two of the strings returned at the end of the function
+            string VerticalWord = "";
+            string HorizontalWord = "";
+
             for (int i = 0; i < CoordinatePairs.Count; i++) //Checks each column for full word
             {
+               
+
                 string word = "";
                 string tile = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
-                int j = CoordinatePairs[i].Key - 1; //Move up a row
+                int j = CoordinatePairs[i].Key; //Move up a row
 
-                if (j == -1) //Prevent Out of bounds error in scrabble board array
+                if (j == 0) //Prevent Out of bounds error in scrabble board array
                     break;
                 
-                while (tile != " ")
+                while (j >= 0 && tile != " ")
                 {
-                    tile = ScrabbleBoard[CoordinatePairs[j--].Key, CoordinatePairs[i].Value]; //Get char at tile position, moving up until empty tile found
-                    word =  tile + word;                                   //append each tile char to string
+                    tile = ScrabbleBoard[j--, CoordinatePairs[i].Value]; //Get char at tile position, moving up until empty tile found
+                    word = tile + word;                                   //append each tile char to string
                 }
-                
+                word = word.Trim();
                 //Chars were added in reverse order. Reverse back to normal order 
-                search.ValidWord(word); //checks if valid word and returns true or false
+                //checks if valid word and returns true or false
+                if (SearchWord.ValidWord(word))
+                {
+                    VerticalWord = word;
+                    int points = CalculateScore(VerticalWord);
+                    MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " scored you " + points + "\n");
+                }
 
                 //need to add function to get point values and add them here
             }
@@ -223,22 +233,38 @@ namespace Scrabble
             {
                 string word = "";
                 string tile = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
-                int j = CoordinatePairs[i].Value - 1;
+                int j = CoordinatePairs[i].Value;
 
-                if (j == -1)
+                if (j == 0)
                     break;
 
-                while (tile != " ")
+                while (j >= 0 && tile != " ")
                 {
-                    tile = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[j--].Value]; //adds tiles to the LEFT of the played tile
-                    word += tile;
+                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j--]; //adds tiles to the LEFT of the played tile
+                    word = tile + word;
+                }
+                word = word.Trim();
+                //check if valid word and return true or false
+                if (SearchWord.ValidWord(word))
+                {
+                    HorizontalWord = word;
+                    int points = CalculateScore(HorizontalWord);
+                    MainWindow.OutPutTextBox.Text += ("The word " + HorizontalWord + " scored you " + points + "\n");
                 }
 
-                word = word.Reverse().ToString(); 
-                search.ValidWord(word); //check if valid word and return true or false
-
-                //need to add function to get point values and add them here
             }
+            
+        }
+        //calculates the points for each word scored and returns the score
+        public static int CalculateScore(string word)
+        {
+            return 0;
+        }
+
+        //switchtes to the computers turn
+        public static void SwitchTurns()
+        {
+
         }
         
     }

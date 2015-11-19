@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
 
 namespace Scrabble
 {
@@ -28,7 +29,8 @@ namespace Scrabble
         public static List<string> PlacedTiles = new List<string>();
         //x and y coordinates of all the placed tiles. used to pass into checkWord function
         public static List<KeyValuePair<int, int>> CoordinatePairs = new List<KeyValuePair<int, int>>();
-        private object txtResult;
+        //display output box to log game events
+        public static RichTextBox OutPutTextBox = new RichTextBox();
 
         public MainWindow()
         {
@@ -36,7 +38,7 @@ namespace Scrabble
             game = new Game();
 
             //setups output textbox
-            RichTextBox OutPutTextBox = new RichTextBox();
+           
             OutPutTextBox.Name = "Scrabble Console";
             //sets the location of output textbox
             OutPutTextBox.Left = 550;
@@ -44,6 +46,27 @@ namespace Scrabble
             //sets size of output textbox
             OutPutTextBox.AutoSize = false;
             OutPutTextBox.Size = new System.Drawing.Size(300, 450);
+
+            //setups the labels for the points for player and computer
+            Label PlayerLabel = new Label();
+            PlayerLabel.Text = "Player Score";
+            PlayerLabel.Location = new Point(870, 460);
+            Label PlayerScore = new Label();
+            PlayerScore.Text = "0";
+            PlayerScore.Location = new Point(895, 485);
+
+            Label ComputerLabel = new Label();
+            ComputerLabel.Text = "Computer Score";
+            ComputerLabel.Location = new Point(870, 50);
+
+            Label ComputerScore = new Label();
+            ComputerScore.Text = "0";
+            ComputerScore.Location = new Point(900, 75);
+
+            this.Controls.Add(PlayerLabel);
+            this.Controls.Add(PlayerScore);
+            this.Controls.Add(ComputerLabel);
+            this.Controls.Add(ComputerScore);
 
             int i;
             int j;
@@ -81,7 +104,9 @@ namespace Scrabble
 
             Submit.Click += delegate (System.Object o, System.EventArgs e)
             {
-                //call checkWords function
+                Game.CheckWords(CoordinatePairs);
+                //now its the computers turn
+                Game.SwitchTurns();
 
             };
 
@@ -195,7 +220,12 @@ namespace Scrabble
                     {
                         //make sure to add check to ensure only one letter is entered and not digits or strings
                         string ReturnedLetter = Microsoft.VisualBasic.Interaction.InputBox("Enter a Letter", "Enter Letter", "Enter a letter please", 200, 200);
-                        PlayerHandButtons[Temp].Text = ReturnedLetter;
+                        //checks if the string is only 1 uppercase letter
+                        if (Regex.IsMatch(ReturnedLetter, @"^[A-Z]+$") && ReturnedLetter.Length == 1)
+                        {
+                            PlayerHandButtons[Temp].Text = ReturnedLetter;
+                        }
+                        
                      }
                     //if button is already selected then deselect it
                     else if (PlayerHandButtons[Temp].BackColor == Color.Green)

@@ -91,7 +91,33 @@ namespace Scrabble
             
             Discard.Click += delegate (System.Object o, System.EventArgs e)
             {
-                OutPutTextBox.Text += "You remove your tiles and get new ones.\n";
+                //if player has not placed any tiles on the board
+                if(PlacedTiles.Count == 0)
+                {
+                    
+                    foreach(Button PlayerTile in PlayerHandButtons)
+                    {
+                        if (PlayerTile.BackColor == Color.Green)
+                        {
+                               
+                            PlayerTile.Text = Game.DrawTile().GetLetter();
+                            PlayerTile.BackColor = SystemColors.ButtonFace;
+                            PlayerTile.UseVisualStyleBackColor = true;
+                                
+                        }
+                            
+                    }
+                    
+                    //emptys the list
+                    SelectedTiles.Clear();
+                    OutPutTextBox.Text += "You remove your tiles and get new ones.\n";
+                }
+                else
+                {
+                    OutPutTextBox.Text += "You need to remove the tiles from the board first.\n";
+                }
+             
+                
                       
             };
             this.Controls.Add(Discard);
@@ -105,6 +131,7 @@ namespace Scrabble
             Submit.Click += delegate (System.Object o, System.EventArgs e)
             {
                 Game.CheckWords(CoordinatePairs);
+                
                 //now its the computers turn
                 Game.SwitchTurns();
 
@@ -272,7 +299,10 @@ namespace Scrabble
 
         }
 
+        public static void UpdatePlayerScore()
+        {
 
+        }
        
 
 

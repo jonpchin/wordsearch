@@ -199,10 +199,10 @@ namespace Scrabble
             //these are two of the strings returned at the end of the function
             string VerticalWord = "";
             string HorizontalWord = "";
+            
 
             for (int i = 0; i < CoordinatePairs.Count; i++) //Checks each column for full word
             {
-               
 
                 string word = "";
                 string tile = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
@@ -217,6 +217,9 @@ namespace Scrabble
                     word = tile + word;                                   //append each tile char to string
                 }
                 word = word.Trim();
+  
+               
+               
                 //Chars were added in reverse order. Reverse back to normal order 
                 //checks if valid word and returns true or false
                 if (SearchWord.ValidWord(word))
@@ -228,6 +231,7 @@ namespace Scrabble
 
                 //need to add function to get point values and add them here
             }
+           
 
             for (int i = 0; i < CoordinatePairs.Count; i++) //identical to above loop, but instead checks words to the LEFT
             {
@@ -244,6 +248,8 @@ namespace Scrabble
                     word = tile + word;
                 }
                 word = word.Trim();
+
+                
                 //check if valid word and return true or false
                 if (SearchWord.ValidWord(word))
                 {
@@ -253,7 +259,7 @@ namespace Scrabble
                 }
 
             }
-            
+           
         }
         //calculates the points for each word scored and returns the score
         public static int CalculateScore(string word)

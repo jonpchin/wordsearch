@@ -28,6 +28,8 @@ namespace Scrabble
         //sets up a Dictionary for score lookups
         public static Dictionary<string, int> ScoreTable = new Dictionary<string, int>();
 
+        //Holds words defined in text file
+        public static Dictionary<string, int> wordList; 
 
         public Game()
         {

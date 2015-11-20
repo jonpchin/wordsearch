@@ -100,14 +100,13 @@ namespace Scrabble
                         if (PlayerTile.BackColor == Color.Green)
                         {
                                
-                            PlayerTile.Text = Game.DrawTile().GetLetter();
+                            PlayerTile.Text = Game.DrawTile();
                             PlayerTile.BackColor = SystemColors.ButtonFace;
                             PlayerTile.UseVisualStyleBackColor = true;
                                 
                         }
                             
-                    }
-                    
+                    }         
                     //emptys the list
                     SelectedTiles.Clear();
                     OutPutTextBox.Text += "You remove your tiles and get new ones.\n";
@@ -130,7 +129,15 @@ namespace Scrabble
 
             Submit.Click += delegate (System.Object o, System.EventArgs e)
             {
-                Game.CheckWords(CoordinatePairs);
+                int Total;
+                if ((Total = Game.CheckWords(CoordinatePairs)) > 0 )
+                {
+                    OutPutTextBox.Text += "You scored a total of " + Total + " points.\n";
+                }
+                else
+                {
+                    OutPutTextBox.Text += "Not all leters were used to make a valid word.\n";
+                }
                 
                 //now its the computers turn
                 Game.SwitchTurns();
@@ -233,9 +240,9 @@ namespace Scrabble
             //sets up the first seven tiles for the players hand
             for (i = 0; i < 7; i++)
             {
-                Game.PlayerHand.Add(Game.DrawTile());
+
                 PlayerHandButtons[i] = new Button();
-                PlayerHandButtons[i].Text = Game.PlayerHand[i].GetLetter();
+                PlayerHandButtons[i].Text = Game.DrawTile();
                 PlayerHandButtons[i].Size = new Size(40, 40);
                 PlayerHandButtons[i].Location = new Point(i * 50 + 90, 510);
                 int Temp = i;

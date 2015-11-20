@@ -22,16 +22,12 @@ namespace Scrabble
         //global static board array, yes its bad practice but its convienent 
         public static string[,] ScrabbleBoard = new String[ROWS, COLS];
         //dynamic array of chars for deck of Tiles
-        public static List<Tile> DeckOfTiles = new List<Tile>();
-
-        //players hand of seven tiles
-        public static List<Tile> PlayerHand = new List<Tile>();
+        public static List<string> DeckOfTiles = new List<string>();
         //computers hand of seven tiles
-        public static List<Tile> ComputerHand = new List<Tile>();
-        //list of tiles that are selected
-        public static List<Tile> SelectedHand = new List<Tile>();
+        public static List<string> ComputerHand = new List<string>();
+        //sets up a Dictionary for score lookups
+        public static Dictionary<string, int> ScoreTable = new Dictionary<string, int>();
 
-        
 
         public Game()
         {
@@ -53,66 +49,94 @@ namespace Scrabble
                     //intitalizing board to default blank chars
                     ScrabbleBoard[i,j] = " ";
                 }
-            }
+            }      
+            ScoreTable[" "] = 0;
+            ScoreTable["A"] = 1;
+            ScoreTable["B"] = 3;
+            ScoreTable["C"] = 3;
+            ScoreTable["D"] = 2;
+            ScoreTable["E"] = 1;
+            ScoreTable["F"] = 4;
+            ScoreTable["G"] = 2;
+            ScoreTable["H"] = 4;
+            ScoreTable["I"] = 1;
+            ScoreTable["J"] = 8;
+            ScoreTable["K"] = 5;
+            ScoreTable["L"] = 1;
+            ScoreTable["M"] = 3;
+            ScoreTable["N"] = 1;
+            ScoreTable["O"] = 1;
+            ScoreTable["P"] = 3;
+            ScoreTable["Q"] = 10;
+            ScoreTable["R"] = 1;
+            ScoreTable["S"] = 1;
+            ScoreTable["T"] = 1;
+            ScoreTable["U"] = 1;
+            ScoreTable["V"] = 4;
+            ScoreTable["W"] = 4;
+            ScoreTable["X"] = 8;
+            ScoreTable["Y"] = 4;
+            ScoreTable["Z"] = 10;
+
             //adding letter frequency into deck of Tiles. Total is 100 tiles.
-            DeckOfTiles.Add(new Tile("K", 5));
-            DeckOfTiles.Add(new Tile("J", 8));
-            DeckOfTiles.Add(new Tile("X", 10));
-            DeckOfTiles.Add(new Tile("Q", 10));
-            DeckOfTiles.Add(new Tile("Z", 10));
+            DeckOfTiles.Add("K");
+            DeckOfTiles.Add("J");
+            DeckOfTiles.Add("X");
+            DeckOfTiles.Add("Q");
+            DeckOfTiles.Add("Z");
             
             for (int i=0; i < 2; i++)
             {
                 //two blank(wild) tiles are added which are worth zero points
-                DeckOfTiles.Add(new Tile(" ", 0));
-                DeckOfTiles.Add(new Tile("B", 3));
-                DeckOfTiles.Add(new Tile("C", 3));
-                DeckOfTiles.Add(new Tile("M", 3));
-                DeckOfTiles.Add(new Tile("P", 3));
+                DeckOfTiles.Add(" ");
+                DeckOfTiles.Add("B");
+                DeckOfTiles.Add("C");
+                DeckOfTiles.Add("M");
+                DeckOfTiles.Add("P");
 
-                DeckOfTiles.Add(new Tile("F", 4));
-                DeckOfTiles.Add(new Tile("H", 4));
-                DeckOfTiles.Add(new Tile("V", 4));
-                DeckOfTiles.Add(new Tile("W", 4));
-                DeckOfTiles.Add(new Tile("Y", 4));
+                DeckOfTiles.Add("F");
+                DeckOfTiles.Add("H");
+                DeckOfTiles.Add("V");
+                DeckOfTiles.Add("W");
+                DeckOfTiles.Add("Y");
             }
             for (int i = 0; i < 3; i++)
             {
 
-                DeckOfTiles.Add(new Tile("G", 2));
+                DeckOfTiles.Add("G");
               
             }
             for (int i = 0; i < 4; i++)
             {
 
-                DeckOfTiles.Add(new Tile("L", 1));
-                DeckOfTiles.Add(new Tile("S", 1));
-                DeckOfTiles.Add(new Tile("U", 1));
-                DeckOfTiles.Add(new Tile("D", 2));
+                DeckOfTiles.Add("L");
+                DeckOfTiles.Add("S");
+                DeckOfTiles.Add("U");
+                DeckOfTiles.Add("D");
 
             }
 
             for (int i = 0; i < 6; i++)
             {
 
-                DeckOfTiles.Add(new Tile("N", 1));
-                DeckOfTiles.Add(new Tile("R", 1));
-                DeckOfTiles.Add(new Tile("T", 1));
+                DeckOfTiles.Add("N");
+                DeckOfTiles.Add("R");
+                DeckOfTiles.Add("T");
 
             }
             for (int i = 0; i < 8; i++)
             {
-                DeckOfTiles.Add(new Tile("O", 1));
+                DeckOfTiles.Add("O");
             }
             for (int i = 0; i < 9; i++)
             {
-                DeckOfTiles.Add(new Tile("A", 1));
-                DeckOfTiles.Add(new Tile("I", 1));
+                DeckOfTiles.Add("A");
+                DeckOfTiles.Add("I");
             }
 
             for (int i = 0; i < 12; i++)
             {
-                DeckOfTiles.Add(new Tile("E", 1));
+                DeckOfTiles.Add("E");
                 
             }
            
@@ -120,8 +144,7 @@ namespace Scrabble
             ShuffleTiles();
             //used for testing purpose only
             PrintDeck();
-            //loads seven tiles of computer
-
+            //loads seven tiles of computer, playe hand will only be stored on front end
             SetupComputerHand();
 
 
@@ -149,7 +172,7 @@ namespace Scrabble
             Random rand = new Random();
             //generates a random number in between 0 and 99 
             
-            Tile temp;
+            string temp;
 
             //randomly pick two values and make 200 swaps to simulate shuffling
             for(int i=0; i<200; i++)
@@ -163,12 +186,21 @@ namespace Scrabble
             }
         }
         //used to draw a random tile from the Tile deck
-        public static Tile DrawTile()
+        public static string DrawTile()
         {
-            Tile temp = DeckOfTiles[DeckOfTiles.Count - 1];
+            if(DeckOfTiles.Count == 0)
+            {
+                //deckOfTiles is empty so game will end with this function call
+                GameOver();
+                //blank junk tile is returned
+                return " ";
+               
+            }
+            string temp = DeckOfTiles[DeckOfTiles.Count - 1];
             //deletes the last tile in the deck
             DeckOfTiles.RemoveAt(DeckOfTiles.Count - 1);
             return temp;
+
         }
 
         //prints the deck of tiles onto console, used only for testing purposes
@@ -177,7 +209,7 @@ namespace Scrabble
         {
             for(int i=0; i<100; i++)
             {
-                Debug.WriteLine("Tile Letter : " + DeckOfTiles[i].GetLetter() + " Points " + DeckOfTiles[i].GetScore());
+                Debug.WriteLine("Tile Letter : " + DeckOfTiles[i]);
             }
         }
         //sets up the first seven tiles for the computers hand
@@ -194,12 +226,81 @@ namespace Scrabble
         //Searches left and up for all buildable words from each added tile
         //Then checks each built word to see if it is valid
         // .Value is y coordinate .Key is x coordinate
-        public static void CheckWords(List<KeyValuePair<int, int>> CoordinatePairs)
+        //returns total points scored by all the letters otherwise it returns 0 which means not all letters were used
+        public static int CheckWords(List<KeyValuePair<int, int>> CoordinatePairs)
         {
             //these are two of the strings returned at the end of the function
             string VerticalWord = "";
             string HorizontalWord = "";
-            
+
+            //this is the total score of all valid words returned at the end
+            int TotalScore = 0;
+            //stores dictionary of letter count of CoordinatePairs
+            Dictionary<string, int> PlacedLetters = new Dictionary<string, int>();
+            //stores a dictionary of all the used letters
+            Dictionary<string, int> UsedLetters = new Dictionary<string, int>();
+
+            //intitalizing all dictionary letters to 0
+            PlacedLetters["A"] = 0;
+            PlacedLetters["B"] = 0;
+            PlacedLetters["C"] = 0;
+            PlacedLetters["D"] = 0;
+            PlacedLetters["E"] = 0;
+            PlacedLetters["F"] = 0;
+            PlacedLetters["G"] = 0;
+            PlacedLetters["H"] = 0;
+            PlacedLetters["I"] = 0;
+            PlacedLetters["J"] = 0;
+            PlacedLetters["K"] = 0;
+            PlacedLetters["L"] = 0;
+            PlacedLetters["M"] = 0;
+            PlacedLetters["N"] = 0;
+            PlacedLetters["O"] = 0;
+            PlacedLetters["P"] = 0;
+            PlacedLetters["Q"] = 0;
+            PlacedLetters["R"] = 0;
+            PlacedLetters["S"] = 0;
+            PlacedLetters["T"] = 0;
+            PlacedLetters["U"] = 0;
+            PlacedLetters["V"] = 0;
+            PlacedLetters["W"] = 0;
+            PlacedLetters["X"] = 0;
+            PlacedLetters["Y"] = 0;
+            PlacedLetters["Z"] = 0;
+
+            UsedLetters["A"] = 0;
+            UsedLetters["B"] = 0;
+            UsedLetters["C"] = 0;
+            UsedLetters["D"] = 0;
+            UsedLetters["E"] = 0;
+            UsedLetters["F"] = 0;
+            UsedLetters["G"] = 0;
+            UsedLetters["H"] = 0;
+            UsedLetters["I"] = 0;
+            UsedLetters["J"] = 0;
+            UsedLetters["K"] = 0;
+            UsedLetters["L"] = 0;
+            UsedLetters["M"] = 0;
+            UsedLetters["N"] = 0;
+            UsedLetters["O"] = 0;
+            UsedLetters["P"] = 0;
+            UsedLetters["Q"] = 0;
+            UsedLetters["R"] = 0;
+            UsedLetters["S"] = 0;
+            UsedLetters["T"] = 0;
+            UsedLetters["U"] = 0;
+            UsedLetters["V"] = 0;
+            UsedLetters["W"] = 0;
+            UsedLetters["X"] = 0;
+            UsedLetters["Y"] = 0;
+            UsedLetters["Z"] = 0;
+
+
+
+            for (int k=0; k<CoordinatePairs.Count; k++)
+            {
+                PlacedLetters[ScrabbleBoard[CoordinatePairs[k].Key, CoordinatePairs[k].Value]]++;
+            }
 
             for (int i = 0; i < CoordinatePairs.Count; i++) //Checks each column for full word
             {
@@ -217,16 +318,24 @@ namespace Scrabble
                     word = tile + word;                                   //append each tile char to string
                 }
                 word = word.Trim();
-  
+               
                
                
                 //Chars were added in reverse order. Reverse back to normal order 
                 //checks if valid word and returns true or false
                 if (SearchWord.ValidWord(word))
                 {
+                    
+                    //keeps track if which letters are used, if a letter is not used at all then all placed letters cannot be scored.
+                    for (int k = 0; k < word.Length; k++)
+                    {
+                        UsedLetters[word[k].ToString()]++;
+                    }
+
                     VerticalWord = word;
                     int points = CalculateScore(VerticalWord);
-                    MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " scored you " + points + "\n");
+                    TotalScore += points;
+                    MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " is worth " + points + "\n");
                 }
 
                 //need to add function to get point values and add them here
@@ -253,22 +362,49 @@ namespace Scrabble
                 //check if valid word and return true or false
                 if (SearchWord.ValidWord(word))
                 {
+                  
+                    //keeps track if which letters are used, if a letter is not used at all then all placed letters cannot be scored.
+                    for (int k = 0; k < word.Length; k++)
+                    {
+                        UsedLetters[word[k].ToString()]++;
+                    }
+
                     HorizontalWord = word;
                     int points = CalculateScore(HorizontalWord);
-                    MainWindow.OutPutTextBox.Text += ("The word " + HorizontalWord + " scored you " + points + "\n");
+                    TotalScore += points;
+                    MainWindow.OutPutTextBox.Text += ("The word " + HorizontalWord + " is worth " + points + "\n");
                 }
 
             }
-           
+            //uppercase ASCII values
+            for(int k=65; k<=90; k++)
+            {
+                if(UsedLetters[((char)k).ToString()] < PlacedLetters[((char)k).ToString()])
+                {
+                    return 0;
+                }
+            }
+            return TotalScore;
         }
         //calculates the points for each word scored and returns the score
         public static int CalculateScore(string word)
         {
-            return 0;
+            int Total = 0;
+            for(int i=0; i<word.Length; i++)
+            {
+                Total += ScoreTable[word[i].ToString()];
+            }
+            return Total;
         }
 
-        //switchtes to the computers turn
+        //switches to the computers turn
         public static void SwitchTurns()
+        {
+
+        }
+
+        //if deck of tiles is empty its game over and the person with most points wins
+        public static void GameOver()
         {
 
         }

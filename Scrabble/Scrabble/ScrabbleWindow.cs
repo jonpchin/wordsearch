@@ -115,9 +115,7 @@ namespace Scrabble
                 {
                     OutPutTextBox.Text += "You need to remove the tiles from the board first.\n";
                 }
-             
-                
-                      
+               
             };
             this.Controls.Add(Discard);
 
@@ -133,14 +131,24 @@ namespace Scrabble
                 if ((Total = Game.CheckWords(CoordinatePairs)) > 0 )
                 {
                     OutPutTextBox.Text += "You scored a total of " + Total + " points.\n";
+                    //updating the score for the players front end
+                    PlayerScore.Text = (Convert.ToInt32(PlayerScore.Text) + Convert.ToInt32(Total)).ToString();
+                    //replaces the tiles that are disabled in the players hand
+                    ReplaceTiles();
+                    //removes the list of placed tiles
+                    PlacedTiles.Clear();
+                    //disables tiles so player can't remove them
+                    DisableTiles();
+                    //removes all coordinates from list
+                    CoordinatePairs.Clear();
+                    //now its the computers turn
+                    Game.SwitchTurns();
                 }
                 else
                 {
                     OutPutTextBox.Text += "Not all leters were used to make a valid word.\n";
                 }
                 
-                //now its the computers turn
-                Game.SwitchTurns();
 
             };
 
@@ -162,7 +170,6 @@ namespace Scrabble
                     FrontEndBoard[i, j].Click += delegate (System.Object o, System.EventArgs e)
                     {
                         
-
                         int IndexValue = 0;
 
                         //if there is already a letter on the frontBoard then its removed
@@ -199,8 +206,7 @@ namespace Scrabble
                                 //storing x and y coordinates to be called when checking for valid words
                                 CoordinatePairs.Add(new KeyValuePair<int, int>(TempI, TempJ));
                                 
-                            }
-                            
+                            }            
                             
                         }
                         else
@@ -216,8 +222,7 @@ namespace Scrabble
                                 }
                                 IndexValue++;
                             }
-                                    
-                                    
+                                               
                             PlacedTiles.Remove(FrontEndBoard[TempI, TempJ].Text);
 
                             //updating backend Board by removing string
@@ -283,13 +288,8 @@ namespace Scrabble
                 this.Controls.Add(PlayerHandButtons[i]);
             }
 
-
         }
-        
-        
 
-        
-       
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -305,15 +305,28 @@ namespace Scrabble
         {
 
         }
-
-        public static void UpdatePlayerScore()
+        //replaces the tiles that the player has placed on the board to make valid words
+        public void ReplaceTiles()
         {
+            foreach(Button item in PlayerHandButtons)
+            {
+                if(item.Enabled == false)
+                {
+                    item.Enabled = true;
+                    item.Text = Game.DrawTile();
+                }
+            }
 
         }
-       
 
-
-
+        //disables the tiles on the board that are valid words and all letters used once player hits submit
+        public void DisableTiles()
+        {
+            foreach(KeyValuePair<int, int> item in CoordinatePairs)
+            {
+                FrontEndBoard[item.Key, item.Value].Enabled = false;
+            }
+        }
 
     }
 }

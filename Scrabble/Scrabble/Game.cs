@@ -14,7 +14,6 @@ namespace Scrabble
 
     class Game
     {
-        
         //board is 15x15
         private const int ROWS = 15;
         private const int COLS = 15;
@@ -149,7 +148,6 @@ namespace Scrabble
             //loads seven tiles of computer, playe hand will only be stored on front end
             SetupComputerHand();
 
-
         }
         //function used to randomly select a player
         public string DrawLetter()
@@ -157,8 +155,6 @@ namespace Scrabble
             Random rand = new Random();
             return ((char)('A' + rand.Next(0, 26))).ToString(); //Returns random letter A-Z
         }
-        
-       
 
         public string WhoseTurn(string yourLetter, string theirLetter)
         {
@@ -223,7 +219,6 @@ namespace Scrabble
             }
         }
         
-
         //Function takes two one list of Pairs.
         //Searches left and up for all buildable words from each added tile
         //Then checks each built word to see if it is valid
@@ -297,8 +292,6 @@ namespace Scrabble
             UsedLetters["Y"] = 0;
             UsedLetters["Z"] = 0;
 
-
-
             for (int k=0; k<CoordinatePairs.Count; k++)
             {
                 PlacedLetters[ScrabbleBoard[CoordinatePairs[k].Key, CoordinatePairs[k].Value]]++;
@@ -320,9 +313,7 @@ namespace Scrabble
                     word = tile + word;                                   //append each tile char to string
                 }
                 word = word.Trim();
-               
-               
-               
+  
                 //Chars were added in reverse order. Reverse back to normal order 
                 //checks if valid word and returns true or false
                 if (SearchWord.ValidWord(word))

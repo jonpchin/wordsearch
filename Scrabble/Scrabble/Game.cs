@@ -306,7 +306,7 @@ namespace Scrabble
 
                 if (j == 0) //Prevent Out of bounds error in scrabble board array
                     break;
-                
+               
                 while (j >= 0 && tile != " ")
                 {
                     tile = ScrabbleBoard[j--, CoordinatePairs[i].Value]; //Get char at tile position, moving up until empty tile found
@@ -331,7 +331,7 @@ namespace Scrabble
                     MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " is worth " + points + "\n");
                 }
 
-                //need to add function to get point values and add them here
+                
             }
            
 
@@ -344,6 +344,7 @@ namespace Scrabble
                 if (j == 0)
                     break;
 
+                
                 while (j >= 0 && tile != " ")
                 {
                     tile = ScrabbleBoard[CoordinatePairs[i].Key, j--]; //adds tiles to the LEFT of the played tile
@@ -368,6 +369,11 @@ namespace Scrabble
                     MainWindow.OutPutTextBox.Text += ("The word " + HorizontalWord + " is worth " + points + "\n");
                 }
 
+            }
+            //check to make sure board is not empty and checks if there is any islands
+            if (MainWindow.ValidPairs.Count != 0 && !CheckValid())
+            {
+                return -1;
             }
             //uppercase ASCII values
             for(int k=65; k<=90; k++)
@@ -401,6 +407,70 @@ namespace Scrabble
         {
 
         }
+        //checks if the coordinates are not out of bounds and performs four way while loop floodfill to make sure
+        //the coordinates are touching the main island. Returns true if both cases are satisified
+        public static bool CheckValid()
+        {
+            
+            foreach(KeyValuePair<int, int> item in MainWindow.CoordinatePairs)
+            {
+                //this will keep track if an island was found or not in one direction
+                int Island = 1;
+
+                int x = item.Key;
+                int y = item.Value;
+                while( x>=0 && ScrabbleBoard[x,y] != " ")
+                {
+                    if (MainWindow.ValidPairs.Contains(new KeyValuePair<int, int>(x, y)))
+                    {
+                        Island = 0;
+                        break;
+                    }
+                    x--;
+
+                }
+                x = item.Key;
+                while (x<=14 && Island == 1 && ScrabbleBoard[x, y] != " ")
+                {
+                    if (MainWindow.ValidPairs.Contains(new KeyValuePair<int, int>(x, y)))
+                    {
+                        Island = 0;
+                        break;
+                    }
+                    x++;
+
+                }
+                x = item.Key;
+                while ( y>= 0 && Island == 1 && ScrabbleBoard[x, y] != " ")
+                {
+                    if (MainWindow.ValidPairs.Contains(new KeyValuePair<int, int>(x, y)))
+                    {
+                        Island = 0;
+                        break;
+                    }
+                    y--;
+
+                }
+                y = item.Value;
+                while ( y<= 14 && Island == 1 &&  ScrabbleBoard[x, y] != " ")
+                {
+                    if (MainWindow.ValidPairs.Contains(new KeyValuePair<int, int>(x, y)))
+                    {
+                        Island = 0;
+                        break;
+                    }
+                    y++;
+
+                }
+                if(Island == 1)
+                {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+
         
     }
 }

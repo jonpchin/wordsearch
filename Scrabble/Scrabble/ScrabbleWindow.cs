@@ -31,6 +31,8 @@ namespace Scrabble
         public static List<KeyValuePair<int, int>> CoordinatePairs = new List<KeyValuePair<int, int>>();
         //display output box to log game events
         public static RichTextBox OutPutTextBox = new RichTextBox();
+        //list of x and y coordinates of all validated disabled tiles on the board. Used to check adjacency
+        public static List<KeyValuePair<int, int>> ValidPairs = new List<KeyValuePair<int, int>>();
 
         public MainWindow()
         {
@@ -130,23 +132,42 @@ namespace Scrabble
                 int Total;
                 if ((Total = Game.CheckWords(CoordinatePairs)) > 0 )
                 {
+                    //then all the coordinates are valid and should be saved for future adjacency checks
+                    foreach(KeyValuePair<int, int> item in CoordinatePairs)
+                    {
+                        ValidPairs.Add(new KeyValuePair<int, int>(item.Key, item.Value));
+                    } 
                     OutPutTextBox.Text += "You scored a total of " + Total + " points.\n";
                     //updating the score for the players front end
                     PlayerScore.Text = (Convert.ToInt32(PlayerScore.Text) + Convert.ToInt32(Total)).ToString();
                     //replaces the tiles that are disabled in the players hand
-                    ReplaceTiles();
+                    foreach (Button item in PlayerHandButtons)
+                    {
+                        if (item.Enabled == false)
+                        {
+                            item.Enabled = true;
+                            item.Text = Game.DrawTile();
+                        }
+                    }
                     //removes the list of placed tiles
                     PlacedTiles.Clear();
                     //disables tiles so player can't remove them
-                    DisableTiles();
+                    foreach (KeyValuePair<int, int> item in CoordinatePairs)
+                    {
+                        FrontEndBoard[item.Key, item.Value].Enabled = false;
+                    }
                     //removes all coordinates from list
                     CoordinatePairs.Clear();
                     //now its the computers turn
                     Game.SwitchTurns();
                 }
+                else if (Total == -1)
+                {
+                    OutPutTextBox.Text += "You are not allowed to form islands.\n";
+                }
                 else
                 {
-                    OutPutTextBox.Text += "Not all leters were used to make a valid word.\n";
+                    OutPutTextBox.Text += "That word is not valid.\n";
                 }
                 
 
@@ -305,28 +326,8 @@ namespace Scrabble
         {
 
         }
-        //replaces the tiles that the player has placed on the board to make valid words
-        public void ReplaceTiles()
-        {
-            foreach(Button item in PlayerHandButtons)
-            {
-                if(item.Enabled == false)
-                {
-                    item.Enabled = true;
-                    item.Text = Game.DrawTile();
-                }
-            }
+     
 
-        }
-
-        //disables the tiles on the board that are valid words and all letters used once player hits submit
-        public void DisableTiles()
-        {
-            foreach(KeyValuePair<int, int> item in CoordinatePairs)
-            {
-                FrontEndBoard[item.Key, item.Value].Enabled = false;
-            }
-        }
-
+    
     }
 }

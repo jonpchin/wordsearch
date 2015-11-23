@@ -236,6 +236,8 @@ namespace Scrabble
             Dictionary<string, int> PlacedLetters = new Dictionary<string, int>();
             //stores a dictionary of all the used letters
             Dictionary<string, int> UsedLetters = new Dictionary<string, int>();
+            //list of found words
+            List<string> FoundWords = new List<string>();
 
             //intitalizing all dictionary letters to 0
             PlacedLetters["A"] = 0;
@@ -302,87 +304,120 @@ namespace Scrabble
 
                 string word = "";
                 string tile = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
-                int j = CoordinatePairs[i].Key; //Move up a row
+                word += tile;
 
-                if (j == 0) //Prevent Out of bounds error in scrabble board array
-                    break;
-               
+                int j = CoordinatePairs[i].Key+1; //Move up a row
+                int start = 0;
+                tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
+                while (j <= 14 && tile != " ")
+                {
+                    tile = ScrabbleBoard[j++, CoordinatePairs[i].Value]; //Get char at tile position, moving up until empty tile found
+                    word += tile;                                   //append each tile char to string
+                    start++;
+                }
+      
+                int finish = 0;
+                
+                j = CoordinatePairs[i].Key-1;//move down the starting row
+                tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
                 while (j >= 0 && tile != " ")
                 {
                     tile = ScrabbleBoard[j--, CoordinatePairs[i].Value]; //Get char at tile position, moving up until empty tile found
                     word = tile + word;                                   //append each tile char to string
+                    finish++;
                 }
                 word = word.Trim();
-  
-                //Chars were added in reverse order. Reverse back to normal order 
-                //checks if valid word and returns true or false
-                if (SearchWord.ValidWord(word))
+                int length = word.Length;
+       
+             
+
+                for (int a = 0; a<start; a++)
                 {
                     
-                    //keeps track if which letters are used, if a letter is not used at all then all placed letters cannot be scored.
-                    for (int k = 0; k < word.Length; k++)
+                    for (int b=0; b<finish; b++)
                     {
-                        UsedLetters[word[k].ToString()]++;
-                    }
+                        //Chars were added in reverse order. Reverse back to normal order 
+                        //checks if valid word and returns true or false
+                        if (SearchWord.ValidWord(word.Substring(a, length-b-a)) && !FoundWords.Contains(word.Substring(a, length-b-a)))
+                        {
+                            FoundWords.Add(word.Substring(a, length - b - a));
 
-                    VerticalWord = word;
-                    int points = CalculateScore(VerticalWord);
-                    TotalScore += points;
-                    MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " is worth " + points + "\n");
+                            VerticalWord = word.Substring(a, length - b - a);
+                            int points = CalculateScore(VerticalWord);
+                            TotalScore += points;
+                            MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " is worth " + points + "\n");
+                           
+                        }
+                    }
+                   
                 }
+            
 
                 
             }
-           
-
+            //when checking horizontal duplicates can appear when compared to vertical words
+            FoundWords.Clear();
             for (int i = 0; i < CoordinatePairs.Count; i++) //identical to above loop, but instead checks words to the LEFT
             {
                 string word = "";
                 string tile = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
-                int j = CoordinatePairs[i].Value;
+                word += tile;
+                int j = CoordinatePairs[i].Value+1; //move to the right one
 
-                if (j == 0)
-                    break;
 
+                tile = ScrabbleBoard[CoordinatePairs[i].Key, j];
+                int start = 0;
+                while (j <= 14 && tile != " ")
+                {
+                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j++]; //adds tiles to the LEFT of the played tile
+                    word += tile;
+                    start++;
+                }
                 
+                word = word.Trim();
+                int finish = 0;
+                j = CoordinatePairs[i].Value - 1; //move to the left one.
+                tile = ScrabbleBoard[CoordinatePairs[i].Key, j]; 
+
                 while (j >= 0 && tile != " ")
                 {
                     tile = ScrabbleBoard[CoordinatePairs[i].Key, j--]; //adds tiles to the LEFT of the played tile
                     word = tile + word;
+                    finish++;
                 }
                 word = word.Trim();
-
-                
-                //check if valid word and return true or false
-                if (SearchWord.ValidWord(word))
+                int length = word.Length;
+                for (int a = 0; a < start; a++)
                 {
-                  
-                    //keeps track if which letters are used, if a letter is not used at all then all placed letters cannot be scored.
-                    for (int k = 0; k < word.Length; k++)
+                   
+                    for (int b = 0; b < finish; b++)
                     {
-                        UsedLetters[word[k].ToString()]++;
+                        //Chars were added in reverse order. Reverse back to normal order 
+                        //checks if valid word and returns true or false
+                        //check if valid word and return true or false
+                        if (SearchWord.ValidWord(word.Substring(a, length - b - a)) && !FoundWords.Contains(word.Substring(a, length - b - a)))
+                        {
+                            FoundWords.Add(word.Substring(a, length - b - a));
+                            HorizontalWord = word.Substring(a, length - b - a);
+                            int points = CalculateScore(HorizontalWord);
+                            TotalScore += points;
+                            MainWindow.OutPutTextBox.Text += ("The word " + HorizontalWord + " is worth " + points + "\n");
+                            
+                        }
                     }
 
-                    HorizontalWord = word;
-                    int points = CalculateScore(HorizontalWord);
-                    TotalScore += points;
-                    MainWindow.OutPutTextBox.Text += ("The word " + HorizontalWord + " is worth " + points + "\n");
                 }
+                
+                
 
             }
+          
             //check to make sure board is not empty and checks if there is any islands
             if (MainWindow.ValidPairs.Count != 0 && !CheckValid())
             {
                 return -1;
             }
-            //uppercase ASCII values
-            for(int k=65; k<=90; k++)
-            {
-                if(UsedLetters[((char)k).ToString()] < PlacedLetters[((char)k).ToString()])
-                {
-                    return 0;
-                }
-            }
+           
             return TotalScore;
         }
         //calculates the points for each word scored and returns the score

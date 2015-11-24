@@ -165,6 +165,10 @@ namespace Scrabble
                 {
                     OutPutTextBox.Text += "You are not allowed to form islands.\n";
                 }
+                else if (Total == -2)
+                {
+                    OutPutTextBox.Text += "Not all letters placed form valid words.\n";
+                }
                 else
                 {
                     OutPutTextBox.Text += "That word is not valid.\n";

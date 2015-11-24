@@ -232,73 +232,40 @@ namespace Scrabble
 
             //this is the total score of all valid words returned at the end
             int TotalScore = 0;
-            //stores dictionary of letter count of CoordinatePairs
-            Dictionary<string, int> PlacedLetters = new Dictionary<string, int>();
+           
             //stores a dictionary of all the used letters
-            Dictionary<string, int> UsedLetters = new Dictionary<string, int>();
+            Dictionary<string, bool> UsedLetters = new Dictionary<string, bool>();
             //list of found words
             List<string> FoundWords = new List<string>();
 
-            //intitalizing all dictionary letters to 0
-            PlacedLetters["A"] = 0;
-            PlacedLetters["B"] = 0;
-            PlacedLetters["C"] = 0;
-            PlacedLetters["D"] = 0;
-            PlacedLetters["E"] = 0;
-            PlacedLetters["F"] = 0;
-            PlacedLetters["G"] = 0;
-            PlacedLetters["H"] = 0;
-            PlacedLetters["I"] = 0;
-            PlacedLetters["J"] = 0;
-            PlacedLetters["K"] = 0;
-            PlacedLetters["L"] = 0;
-            PlacedLetters["M"] = 0;
-            PlacedLetters["N"] = 0;
-            PlacedLetters["O"] = 0;
-            PlacedLetters["P"] = 0;
-            PlacedLetters["Q"] = 0;
-            PlacedLetters["R"] = 0;
-            PlacedLetters["S"] = 0;
-            PlacedLetters["T"] = 0;
-            PlacedLetters["U"] = 0;
-            PlacedLetters["V"] = 0;
-            PlacedLetters["W"] = 0;
-            PlacedLetters["X"] = 0;
-            PlacedLetters["Y"] = 0;
-            PlacedLetters["Z"] = 0;
+            UsedLetters["A"] = false;
+            UsedLetters["B"] = false;
+            UsedLetters["C"] = false;
+            UsedLetters["D"] = false;
+            UsedLetters["E"] = false;
+            UsedLetters["F"] = false;
+            UsedLetters["G"] = false;
+            UsedLetters["H"] = false;
+            UsedLetters["I"] = false;
+            UsedLetters["J"] = false;
+            UsedLetters["K"] = false;
+            UsedLetters["L"] = false;
+            UsedLetters["M"] = false;
+            UsedLetters["N"] = false;
+            UsedLetters["O"] = false;
+            UsedLetters["P"] = false;
+            UsedLetters["Q"] = false;
+            UsedLetters["R"] = false;
+            UsedLetters["S"] = false;
+            UsedLetters["T"] = false;
+            UsedLetters["U"] = false;
+            UsedLetters["V"] = false;
+            UsedLetters["W"] = false;
+            UsedLetters["X"] = false;
+            UsedLetters["Y"] = false;
+            UsedLetters["Z"] = false;
 
-            UsedLetters["A"] = 0;
-            UsedLetters["B"] = 0;
-            UsedLetters["C"] = 0;
-            UsedLetters["D"] = 0;
-            UsedLetters["E"] = 0;
-            UsedLetters["F"] = 0;
-            UsedLetters["G"] = 0;
-            UsedLetters["H"] = 0;
-            UsedLetters["I"] = 0;
-            UsedLetters["J"] = 0;
-            UsedLetters["K"] = 0;
-            UsedLetters["L"] = 0;
-            UsedLetters["M"] = 0;
-            UsedLetters["N"] = 0;
-            UsedLetters["O"] = 0;
-            UsedLetters["P"] = 0;
-            UsedLetters["Q"] = 0;
-            UsedLetters["R"] = 0;
-            UsedLetters["S"] = 0;
-            UsedLetters["T"] = 0;
-            UsedLetters["U"] = 0;
-            UsedLetters["V"] = 0;
-            UsedLetters["W"] = 0;
-            UsedLetters["X"] = 0;
-            UsedLetters["Y"] = 0;
-            UsedLetters["Z"] = 0;
-
-            for (int k=0; k<CoordinatePairs.Count; k++)
-            {
-                PlacedLetters[ScrabbleBoard[CoordinatePairs[k].Key, CoordinatePairs[k].Value]]++;
-            }
-
+          
             for (int i = 0; i < CoordinatePairs.Count; i++) //Checks each column for full word
             {
 
@@ -307,42 +274,42 @@ namespace Scrabble
                 word += tile;
 
                 int j = CoordinatePairs[i].Key+1; //Move up a row
-                int start = 0;
+                
+                int finish = 0;
                 tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
                 while (j <= 14 && tile != " ")
                 {
                     tile = ScrabbleBoard[j++, CoordinatePairs[i].Value]; //Get char at tile position, moving up until empty tile found
                     word += tile;                                   //append each tile char to string
-                    start++;
+                    finish++;
                 }
-      
-                int finish = 0;
-                
+                int start = 0;
+
                 j = CoordinatePairs[i].Key-1;//move down the starting row
                 tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
                 while (j >= 0 && tile != " ")
                 {
                     tile = ScrabbleBoard[j--, CoordinatePairs[i].Value]; //Get char at tile position, moving up until empty tile found
                     word = tile + word;                                   //append each tile char to string
-                    finish++;
+                    start++;
                 }
                 word = word.Trim();
                 int length = word.Length;
        
              
 
-                for (int a = 0; a<start; a++)
+                for (int b = 0; b<start; b++)
                 {
                     
-                    for (int b=0; b<finish; b++)
+                    for (int a=0; a<finish; a++)
                     {
                         //Chars were added in reverse order. Reverse back to normal order 
                         //checks if valid word and returns true or false
-                        if (SearchWord.ValidWord(word.Substring(a, length-b-a)) && !FoundWords.Contains(word.Substring(a, length-b-a)))
+                        if (SearchWord.ValidWord(word.Substring(a, length-b - a)) && !FoundWords.Contains(word.Substring(a, length-b - a)))
                         {
                             FoundWords.Add(word.Substring(a, length - b - a));
 
-                            VerticalWord = word.Substring(a, length - b - a);
+                            VerticalWord = word.Substring(a, length - b -a);
                             int points = CalculateScore(VerticalWord);
                             TotalScore += points;
                             MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " is worth " + points + "\n");
@@ -351,12 +318,21 @@ namespace Scrabble
                     }
                    
                 }
-            
+                if (SearchWord.ValidWord(word.Substring(0, length)) && !FoundWords.Contains(word.Substring(0, length)))
+                {
+                    FoundWords.Add(word.Substring(0, length));
 
-                
+                    VerticalWord = word.Substring(0, length);
+                    int points = CalculateScore(VerticalWord);
+                    TotalScore += points;
+                    MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " is worth " + points + "\n");
+
+                }
+
+
+
             }
-            //when checking horizontal duplicates can appear when compared to vertical words
-            FoundWords.Clear();
+          
             for (int i = 0; i < CoordinatePairs.Count; i++) //identical to above loop, but instead checks words to the LEFT
             {
                 string word = "";
@@ -366,16 +342,17 @@ namespace Scrabble
 
 
                 tile = ScrabbleBoard[CoordinatePairs[i].Key, j];
-                int start = 0;
+                int finish = 0;
+                
                 while (j <= 14 && tile != " ")
                 {
-                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j++]; //adds tiles to the LEFT of the played tile
+                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j++]; //adds tiles to the RIGHT of the played tile
                     word += tile;
-                    start++;
+                    finish++;
                 }
                 
                 word = word.Trim();
-                int finish = 0;
+                int start = 0;
                 j = CoordinatePairs[i].Value - 1; //move to the left one.
                 tile = ScrabbleBoard[CoordinatePairs[i].Key, j]; 
 
@@ -383,7 +360,7 @@ namespace Scrabble
                 {
                     tile = ScrabbleBoard[CoordinatePairs[i].Key, j--]; //adds tiles to the LEFT of the played tile
                     word = tile + word;
-                    finish++;
+                    start++;
                 }
                 word = word.Trim();
                 int length = word.Length;
@@ -395,10 +372,10 @@ namespace Scrabble
                         //Chars were added in reverse order. Reverse back to normal order 
                         //checks if valid word and returns true or false
                         //check if valid word and return true or false
-                        if (SearchWord.ValidWord(word.Substring(a, length - b - a)) && !FoundWords.Contains(word.Substring(a, length - b - a)))
+                        if (SearchWord.ValidWord(word.Substring(a, length - b-a)) && !FoundWords.Contains(word.Substring(a, length - b-a)))
                         {
                             FoundWords.Add(word.Substring(a, length - b - a));
-                            HorizontalWord = word.Substring(a, length - b - a);
+                            HorizontalWord = word.Substring(a, length - b-a);
                             int points = CalculateScore(HorizontalWord);
                             TotalScore += points;
                             MainWindow.OutPutTextBox.Text += ("The word " + HorizontalWord + " is worth " + points + "\n");
@@ -407,11 +384,34 @@ namespace Scrabble
                     }
 
                 }
-                
-                
+                if (SearchWord.ValidWord(word.Substring(0, length)) && !FoundWords.Contains(word.Substring(0, length)))
+                {
+                    FoundWords.Add(word.Substring(0, length));
+
+                    VerticalWord = word.Substring(0, length);
+                    int points = CalculateScore(VerticalWord);
+                    TotalScore += points;
+                    MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " is worth " + points + "\n");
+
+                }
 
             }
-          
+            //marking all letters in the hash table as true
+            foreach (string item in FoundWords)
+            {
+                for(int i=0; i<item.Length; i++)
+                {
+                    UsedLetters[item[i].ToString()] = true;
+                }
+            }
+            //checking to see if all letters placed on the board are used
+            foreach(KeyValuePair<int, int> item in CoordinatePairs)
+            {
+                if(UsedLetters[ScrabbleBoard[item.Key, item.Value]] == false)
+                {
+                    return -2;
+                }
+            }
             //check to make sure board is not empty and checks if there is any islands
             if (MainWindow.ValidPairs.Count != 0 && !CheckValid())
             {

@@ -111,11 +111,11 @@ namespace Scrabble
                     }         
                     //emptys the list
                     SelectedTiles.Clear();
-                    OutPutTextBox.Text += "You remove your tiles and get new ones.\n";
+                    OutPutTextBox.AppendText("You remove your tiles and get new ones.\n");
                 }
                 else
                 {
-                    OutPutTextBox.Text += "You need to remove the tiles from the board first.\n";
+                    OutPutTextBox.AppendText("You need to remove the tiles from the board first.\n");
                 }
                
             };
@@ -137,7 +137,7 @@ namespace Scrabble
                     {
                         ValidPairs.Add(new KeyValuePair<int, int>(item.Key, item.Value));
                     } 
-                    OutPutTextBox.Text += "You scored a total of " + Total + " points.\n";
+                    OutPutTextBox.AppendText("You scored a total of " + Total + " points.\n");
                     //updating the score for the players front end
                     PlayerScore.Text = (Convert.ToInt32(PlayerScore.Text) + Convert.ToInt32(Total)).ToString();
                     //replaces the tiles that are disabled in the players hand
@@ -163,15 +163,15 @@ namespace Scrabble
                 }
                 else if (Total == -1)
                 {
-                    OutPutTextBox.Text += "You are not allowed to form islands.\n";
+                    OutPutTextBox.AppendText("You are not allowed to form islands.\n");
                 }
                 else if (Total == -2)
                 {
-                    OutPutTextBox.Text += "Not all letters placed form valid words.\n";
+                    OutPutTextBox.AppendText("Not all letters placed form valid words.\n");
                 }
                 else
                 {
-                    OutPutTextBox.Text += "That word is not valid.\n";
+                    OutPutTextBox.AppendText("That word is not valid.\n");
                 }
                 
 

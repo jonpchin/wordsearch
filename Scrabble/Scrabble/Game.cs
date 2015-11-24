@@ -233,190 +233,201 @@ namespace Scrabble
             //this is the total score of all valid words returned at the end
             int TotalScore = 0;
            
-            //stores a dictionary of all the used letters
-            Dictionary<string, bool> UsedLetters = new Dictionary<string, bool>();
-            //list of found words
-            List<string> FoundWords = new List<string>();
 
-            UsedLetters["A"] = false;
-            UsedLetters["B"] = false;
-            UsedLetters["C"] = false;
-            UsedLetters["D"] = false;
-            UsedLetters["E"] = false;
-            UsedLetters["F"] = false;
-            UsedLetters["G"] = false;
-            UsedLetters["H"] = false;
-            UsedLetters["I"] = false;
-            UsedLetters["J"] = false;
-            UsedLetters["K"] = false;
-            UsedLetters["L"] = false;
-            UsedLetters["M"] = false;
-            UsedLetters["N"] = false;
-            UsedLetters["O"] = false;
-            UsedLetters["P"] = false;
-            UsedLetters["Q"] = false;
-            UsedLetters["R"] = false;
-            UsedLetters["S"] = false;
-            UsedLetters["T"] = false;
-            UsedLetters["U"] = false;
-            UsedLetters["V"] = false;
-            UsedLetters["W"] = false;
-            UsedLetters["X"] = false;
-            UsedLetters["Y"] = false;
-            UsedLetters["Z"] = false;
+            //stores the X, Y coordinates of used words
+            List<KeyValuePair<int, int>> FoundWords = new List<KeyValuePair<int, int>>();
 
-          
+            bool[,] UsedLetters = new bool[15, 15];
+            for(int a=0; a<15; a++)
+            {
+                for(int b=0; b<15; b++)
+                {
+                    UsedLetters[a,b] = false;
+                }
+            }
+
+
+
             for (int i = 0; i < CoordinatePairs.Count; i++) //Checks each column for full word
             {
 
-                string word = "";
-                string tile = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
-                word += tile;
+                //main letter that is guarnteed to be placed
+                string MainLetter = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
+               
+                //stores x, y coordinates of current word being built
+                List<KeyValuePair<int, int>> Storage = new List<KeyValuePair<int, int>>();
+                Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, CoordinatePairs[i].Value));
 
-                int j = CoordinatePairs[i].Key+1; //Move up a row
+                int j = CoordinatePairs[i].Key;
+                if (j < 14)
+                {
+                    j = CoordinatePairs[i].Key + 1; //Move up a row
+                }
                 
-                int finish = 0;
-                tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
+                 
+
+                string BackWord = "";
+                string tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
+                
+
                 while (j <= 14 && tile != " ")
                 {
-                    tile = ScrabbleBoard[j++, CoordinatePairs[i].Value]; //Get char at tile position, moving up until empty tile found
-                    word += tile;                                   //append each tile char to string
-                    finish++;
+                    //Get char at tile position, moving up until empty tile found
+                    Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
+                    tile = ScrabbleBoard[j++, CoordinatePairs[i].Value];
+                    BackWord += tile;
                 }
-                int start = 0;
-
-                j = CoordinatePairs[i].Key-1;//move down the starting row
+                BackWord.Trim();
+                j = CoordinatePairs[i].Key;
+                if (j > 0)
+                {
+                    j = CoordinatePairs[i].Key - 1;//move down the starting row
+                }
+                    
+                string FrontWord = "";
                 tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
+
                 while (j >= 0 && tile != " ")
                 {
-                    tile = ScrabbleBoard[j--, CoordinatePairs[i].Value]; //Get char at tile position, moving up until empty tile found
-                    word = tile + word;                                   //append each tile char to string
-                    start++;
-                }
-                word = word.Trim();
-                int length = word.Length;
-       
-             
 
-                for (int b = 0; b<start; b++)
-                {
+                    //Get char at tile position, moving up until empty tile found
+                    Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
+                    tile = ScrabbleBoard[j--, CoordinatePairs[i].Value];
+                    FrontWord = tile + FrontWord;   
+                         
                     
-                    for (int a=0; a<finish; a++)
-                    {
-                        //Chars were added in reverse order. Reverse back to normal order 
-                        //checks if valid word and returns true or false
-                        if (SearchWord.ValidWord(word.Substring(a, length-b - a)) && !FoundWords.Contains(word.Substring(a, length-b - a)))
-                        {
-                            FoundWords.Add(word.Substring(a, length - b - a));
+                }
+                FrontWord = FrontWord.Trim();
+                int FrontLength = FrontWord.Length;
+                int BackLength = BackWord.Length;
+                
 
-                            VerticalWord = word.Substring(a, length - b -a);
+                for (int a=0; a<=FrontLength; a++)
+                {
+                    for(int b=0; b<=BackLength; b++)
+                    {
+                        if (SearchWord.ValidWord(FrontWord.Substring(a, FrontLength-a) + MainLetter + BackWord.Substring(0, BackLength-b)))
+                        {
+                            //storing all x, y coordinates of valid word to be used to check if all letters used 
+                            foreach (KeyValuePair<int, int> item in Storage)
+                            {
+                                FoundWords.Add(new KeyValuePair<int, int>(item.Key, item.Value));
+                            }
+                            //check to make sure board is not empty and checks if there is any islands
+                            if (MainWindow.ValidPairs.Count != 0 && !IsConnect(Storage))
+                            {
+                                return -1;
+                            }
+
+                            VerticalWord = FrontWord.Substring(a, FrontLength-a) + MainLetter + BackWord.Substring(0, BackLength-b);
                             int points = CalculateScore(VerticalWord);
                             TotalScore += points;
-                            MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " is worth " + points + "\n");
-                           
+                            MainWindow.OutPutTextBox.AppendText("The word " + VerticalWord + " is worth " + points + "\n");
+
                         }
                     }
-                   
-                }
-                if (SearchWord.ValidWord(word.Substring(0, length)) && !FoundWords.Contains(word.Substring(0, length)))
-                {
-                    FoundWords.Add(word.Substring(0, length));
-
-                    VerticalWord = word.Substring(0, length);
-                    int points = CalculateScore(VerticalWord);
-                    TotalScore += points;
-                    MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " is worth " + points + "\n");
-
                 }
 
+                
 
 
             }
           
             for (int i = 0; i < CoordinatePairs.Count; i++) //identical to above loop, but instead checks words to the LEFT
             {
-                string word = "";
-                string tile = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
-                word += tile;
-                int j = CoordinatePairs[i].Value+1; //move to the right one
+                string MainLetter = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
+                string BackWord = "";
 
+                List<KeyValuePair<int, int>> Storage = new List<KeyValuePair<int, int>>();
+                //adding original coordinate
+                Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, CoordinatePairs[i].Value));
 
-                tile = ScrabbleBoard[CoordinatePairs[i].Key, j];
-                int finish = 0;
+                int j = CoordinatePairs[i].Value;
+                if (j < 14)
+                {
+                    j = CoordinatePairs[i].Value + 1;
+                }
                 
+                string tile = ScrabbleBoard[CoordinatePairs[i].Key, j];
+               
                 while (j <= 14 && tile != " ")
                 {
-                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j++]; //adds tiles to the RIGHT of the played tile
-                    word += tile;
-                    finish++;
+                    //adds tiles to the RIGHT of the played tile
+                    Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, j));
+                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j++];
+                    BackWord += tile;
+
+                }
+                //removes trailing white space
+                BackWord = BackWord.Trim();
+                j = CoordinatePairs[i].Value;
+                if (j > 0)
+                {
+                    j = CoordinatePairs[i].Value - 1; //move to the left one.
                 }
                 
-                word = word.Trim();
-                int start = 0;
-                j = CoordinatePairs[i].Value - 1; //move to the left one.
-                tile = ScrabbleBoard[CoordinatePairs[i].Key, j]; 
 
+                string FrontWord = "";
+                tile = ScrabbleBoard[CoordinatePairs[i].Key, j];
                 while (j >= 0 && tile != " ")
                 {
-                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j--]; //adds tiles to the LEFT of the played tile
-                    word = tile + word;
-                    start++;
+                    //adds tiles to the LEFT of the played tile
+                    Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, j));
+                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j--];
+                    FrontWord = tile + FrontWord;
+ 
                 }
-                word = word.Trim();
-                int length = word.Length;
-                for (int a = 0; a < start; a++)
+                FrontWord = FrontWord.Trim();
+                int FrontLength = FrontWord.Length;
+                int BackLength = BackWord.Length;
+              
+                for(int a=0; a<= FrontLength; a++)
                 {
-                   
-                    for (int b = 0; b < finish; b++)
+                    for(int b=0; b<= BackLength; b++)
                     {
-                        //Chars were added in reverse order. Reverse back to normal order 
-                        //checks if valid word and returns true or false
-                        //check if valid word and return true or false
-                        if (SearchWord.ValidWord(word.Substring(a, length - b-a)) && !FoundWords.Contains(word.Substring(a, length - b-a)))
+                        if (SearchWord.ValidWord(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b)) && !IsDuplicate(Storage, FoundWords))
                         {
-                            FoundWords.Add(word.Substring(a, length - b - a));
-                            HorizontalWord = word.Substring(a, length - b-a);
+                            string temp = FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b);
+                            foreach (KeyValuePair<int, int> item in Storage)
+                            {
+                                if(temp.Contains(ScrabbleBoard[item.Key, item.Value]))
+                                {
+                                    FoundWords.Add(new KeyValuePair<int, int>(item.Key, item.Value));
+                                }
+                                
+                            }
+                            //check to make sure board is not empty and checks if there is any islands
+                            if (MainWindow.ValidPairs.Count != 0 && !IsConnect(Storage))
+                            {
+                                return -1;
+                            }
+
+                            HorizontalWord = FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b);
                             int points = CalculateScore(HorizontalWord);
                             TotalScore += points;
-                            MainWindow.OutPutTextBox.Text += ("The word " + HorizontalWord + " is worth " + points + "\n");
-                            
+                            MainWindow.OutPutTextBox.AppendText("The word " + HorizontalWord + " is worth " + points + "\n");
+
                         }
                     }
-
                 }
-                if (SearchWord.ValidWord(word.Substring(0, length)) && !FoundWords.Contains(word.Substring(0, length)))
-                {
-                    FoundWords.Add(word.Substring(0, length));
-
-                    VerticalWord = word.Substring(0, length);
-                    int points = CalculateScore(VerticalWord);
-                    TotalScore += points;
-                    MainWindow.OutPutTextBox.Text += ("The word " + VerticalWord + " is worth " + points + "\n");
-
-                }
+               
 
             }
             //marking all letters in the hash table as true
-            foreach (string item in FoundWords)
+            foreach (KeyValuePair<int, int> item in FoundWords)
             {
-                for(int i=0; i<item.Length; i++)
-                {
-                    UsedLetters[item[i].ToString()] = true;
-                }
+
+                UsedLetters[item.Key, item.Value] = true;
             }
             //checking to see if all letters placed on the board are used
             foreach(KeyValuePair<int, int> item in CoordinatePairs)
             {
-                if(UsedLetters[ScrabbleBoard[item.Key, item.Value]] == false)
+                if(UsedLetters[item.Key, item.Value] == false)
                 {
                     return -2;
                 }
             }
-            //check to make sure board is not empty and checks if there is any islands
-            if (MainWindow.ValidPairs.Count != 0 && !CheckValid())
-            {
-                return -1;
-            }
+            
            
             return TotalScore;
         }
@@ -442,66 +453,45 @@ namespace Scrabble
         {
 
         }
-        //checks if the coordinates are not out of bounds and performs four way while loop floodfill to make sure
-        //the coordinates are touching the main island. Returns true if both cases are satisified
-        public static bool CheckValid()
+        //checks if any part of the submitted word is connected to of the ValidPairs
+        //returns true if there is a connection is found to the main island
+        public static bool IsConnect(List<KeyValuePair<int, int>> Storage)
         {
-            
-            foreach(KeyValuePair<int, int> item in MainWindow.CoordinatePairs)
+            foreach(KeyValuePair<int, int> item in Storage)
             {
-                //this will keep track if an island was found or not in one direction
-                int Island = 1;
-
-                int x = item.Key;
-                int y = item.Value;
-                while( x>=0 && ScrabbleBoard[x,y] != " ")
+                foreach(KeyValuePair<int, int> Valid in MainWindow.ValidPairs)
                 {
-                    if (MainWindow.ValidPairs.Contains(new KeyValuePair<int, int>(x, y)))
+                    //if a connection is found to the main island then return true
+                    if(item.Key==Valid.Key && item.Value== Valid.Value)
                     {
-                        Island = 0;
+                        return true;
+                    } 
+                }
+            }
+            return false;
+        }
+        //returns true if there is a duplicate word found
+        public static bool IsDuplicate(List<KeyValuePair<int, int>> Storage, List<KeyValuePair<int, int>> FoundWords)
+        {
+            if(FoundWords.Count == 0)
+            {
+                return false;
+            }
+            foreach(KeyValuePair<int, int> item in Storage)
+            {
+                int found = 0;
+                foreach(KeyValuePair<int, int> Found in FoundWords)
+                {
+                    if (item.Key == Found.Key || item.Value == Found.Value)
+                    {
+                        found = 1;
                         break;
                     }
-                    x--;
-
                 }
-                x = item.Key;
-                while (x<=14 && Island == 1 && ScrabbleBoard[x, y] != " ")
-                {
-                    if (MainWindow.ValidPairs.Contains(new KeyValuePair<int, int>(x, y)))
-                    {
-                        Island = 0;
-                        break;
-                    }
-                    x++;
-
-                }
-                x = item.Key;
-                while ( y>= 0 && Island == 1 && ScrabbleBoard[x, y] != " ")
-                {
-                    if (MainWindow.ValidPairs.Contains(new KeyValuePair<int, int>(x, y)))
-                    {
-                        Island = 0;
-                        break;
-                    }
-                    y--;
-
-                }
-                y = item.Value;
-                while ( y<= 14 && Island == 1 &&  ScrabbleBoard[x, y] != " ")
-                {
-                    if (MainWindow.ValidPairs.Contains(new KeyValuePair<int, int>(x, y)))
-                    {
-                        Island = 0;
-                        break;
-                    }
-                    y++;
-
-                }
-                if(Island == 1)
+                if (found == 0)
                 {
                     return false;
                 }
-
             }
             return true;
         }

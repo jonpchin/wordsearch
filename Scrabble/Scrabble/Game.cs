@@ -272,12 +272,13 @@ namespace Scrabble
                 string tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
                 
 
-                while (j <= 14 && tile != " ")
+                while (j <= 14 && ScrabbleBoard[j, CoordinatePairs[i].Value] != " ")
                 {
                     //Get char at tile position, moving up until empty tile found
                     Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
-                    tile = ScrabbleBoard[j++, CoordinatePairs[i].Value];
+                    tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
                     BackWord += tile;
+                    j++;
                 }
                 BackWord.Trim();
                 j = CoordinatePairs[i].Key;
@@ -289,15 +290,15 @@ namespace Scrabble
                 string FrontWord = "";
                 tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
 
-                while (j >= 0 && tile != " ")
+                while (j >= 0 && ScrabbleBoard[j, CoordinatePairs[i].Value] != " ")
                 {
 
                     //Get char at tile position, moving up until empty tile found
                     Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
-                    tile = ScrabbleBoard[j--, CoordinatePairs[i].Value];
-                    FrontWord = tile + FrontWord;   
-                         
-                    
+                    tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
+                    FrontWord = tile + FrontWord;
+                    j--;
+            
                 }
                 FrontWord = FrontWord.Trim();
                 int FrontLength = FrontWord.Length;
@@ -327,8 +328,8 @@ namespace Scrabble
                             int points = CalculateScore(VerticalWord);
                             TotalScore += points;
                             MainWindow.OutPutTextBox.AppendText("The word " + VerticalWord + " is worth " + points + "\n");
-                            
-                           
+                            MainWindow.OutPutTextBox.ScrollToCaret();
+
 
                         }
                     }
@@ -358,12 +359,13 @@ namespace Scrabble
                 
                 string tile = ScrabbleBoard[CoordinatePairs[i].Key, j];
                
-                while (j <= 14 && tile != " ")
+                while (j <= 14 && ScrabbleBoard[CoordinatePairs[i].Key, j] != " ")
                 {
                     //adds tiles to the RIGHT of the played tile
-                    Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, j));
-                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j++];
+                    Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, j));   
+                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j];
                     BackWord += tile;
+                    j++;
 
                 }
                 //removes trailing white space
@@ -377,12 +379,13 @@ namespace Scrabble
 
                 string FrontWord = "";
                 tile = ScrabbleBoard[CoordinatePairs[i].Key, j];
-                while (j >= 0 && tile != " ")
+                while (j >= 0 && ScrabbleBoard[CoordinatePairs[i].Key, j] != " ")
                 {
                     //adds tiles to the LEFT of the played tile
                     Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, j));
-                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j--];
+                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j];
                     FrontWord = tile + FrontWord;
+                    j--;
  
                 }
                 FrontWord = FrontWord.Trim();
@@ -412,8 +415,8 @@ namespace Scrabble
                             int points = CalculateScore(HorizontalWord);
                             TotalScore += points;
                             MainWindow.OutPutTextBox.AppendText("The word " + HorizontalWord + " is worth " + points + "\n");
-                            
-                           
+                            MainWindow.OutPutTextBox.ScrollToCaret();
+
 
                         }
                     }

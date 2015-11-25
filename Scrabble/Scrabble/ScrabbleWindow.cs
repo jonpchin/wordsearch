@@ -33,6 +33,8 @@ namespace Scrabble
         public static RichTextBox OutPutTextBox = new RichTextBox();
         //list of x and y coordinates of all validated disabled tiles on the board. Used to check adjacency
         public static List<KeyValuePair<int, int>> ValidPairs = new List<KeyValuePair<int, int>>();
+        //Holds selected button's button index
+        public static int selectedHandIndex;
 
         public MainWindow()
         {
@@ -210,16 +212,10 @@ namespace Scrabble
                                 FrontEndBoard[TempI, TempJ].Text = SelectedTiles[0];
                                 int counter = 0;
                                 int index = 1;
-                                //searches for letter in the SelectedTiles list to be disabled
-                                foreach (Button item in PlayerHandButtons)
-                                {
-                                    if (SelectedTiles[0] == item.Text && item.Enabled==true)
-                                    {
-                                        index = counter;
-                                        break;
-                                    }
-                                    counter++;
-                                }
+                                
+                                //Sets the index to the specfied index of the button in the player's hand
+                                //that was set upon clicking the button
+                                index = selectedHandIndex;
                                 //disables the tile in the hand that was placed on the board
                                 PlayerHandButtons[index].BackColor = SystemColors.ButtonFace;
                                 PlayerHandButtons[index].UseVisualStyleBackColor = true;
@@ -307,6 +303,8 @@ namespace Scrabble
                         SelectedTiles.Add(PlayerHandButtons[Temp].Text);
                         //background color of button will change to show it is selected
                         PlayerHandButtons[Temp].BackColor = Color.Green;
+                        //Selected button's index in hand
+                        selectedHandIndex = Temp;
                     }
                     
                 };

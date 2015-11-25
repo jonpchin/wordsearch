@@ -232,7 +232,8 @@ namespace Scrabble
 
             //this is the total score of all valid words returned at the end
             int TotalScore = 0;
-           
+            //stores all used words to prevent duplicate words
+            List<string> DuplicateWords = new List<string>();
 
             //stores the X, Y coordinates of used words
             List<KeyValuePair<int, int>> FoundWords = new List<KeyValuePair<int, int>>();
@@ -257,6 +258,7 @@ namespace Scrabble
                 //stores x, y coordinates of current word being built
                 List<KeyValuePair<int, int>> Storage = new List<KeyValuePair<int, int>>();
                 Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, CoordinatePairs[i].Value));
+                
 
                 int j = CoordinatePairs[i].Key;
                 if (j < 14)
@@ -306,8 +308,9 @@ namespace Scrabble
                 {
                     for(int b=0; b<=BackLength; b++)
                     {
-                        if (SearchWord.ValidWord(FrontWord.Substring(a, FrontLength-a) + MainLetter + BackWord.Substring(0, BackLength-b)))
+                        if (SearchWord.ValidWord(FrontWord.Substring(a, FrontLength-a) + MainLetter + BackWord.Substring(0, BackLength-b)) && !DuplicateWords.Contains(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b)))
                         {
+                            DuplicateWords.Add(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b));
                             //storing all x, y coordinates of valid word to be used to check if all letters used 
                             foreach (KeyValuePair<int, int> item in Storage)
                             {
@@ -319,10 +322,13 @@ namespace Scrabble
                                 return -1;
                             }
 
-                            VerticalWord = FrontWord.Substring(a, FrontLength-a) + MainLetter + BackWord.Substring(0, BackLength-b);
+                            
+                            VerticalWord = FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b);
                             int points = CalculateScore(VerticalWord);
                             TotalScore += points;
                             MainWindow.OutPutTextBox.AppendText("The word " + VerticalWord + " is worth " + points + "\n");
+                            
+                           
 
                         }
                     }
@@ -332,7 +338,8 @@ namespace Scrabble
 
 
             }
-          
+            //horizontal words do not collide with vertical words for duplicates
+            DuplicateWords.Clear();
             for (int i = 0; i < CoordinatePairs.Count; i++) //identical to above loop, but instead checks words to the LEFT
             {
                 string MainLetter = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
@@ -341,6 +348,7 @@ namespace Scrabble
                 List<KeyValuePair<int, int>> Storage = new List<KeyValuePair<int, int>>();
                 //adding original coordinate
                 Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, CoordinatePairs[i].Value));
+                
 
                 int j = CoordinatePairs[i].Value;
                 if (j < 14)
@@ -385,27 +393,27 @@ namespace Scrabble
                 {
                     for(int b=0; b<= BackLength; b++)
                     {
-                        if (SearchWord.ValidWord(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b)) && !IsDuplicate(Storage, FoundWords))
+                        if (SearchWord.ValidWord(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b)) && !DuplicateWords.Contains(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b)) )
                         {
-                            string temp = FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b);
+                            DuplicateWords.Add(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b));
                             foreach (KeyValuePair<int, int> item in Storage)
                             {
-                                if(temp.Contains(ScrabbleBoard[item.Key, item.Value]))
-                                {
-                                    FoundWords.Add(new KeyValuePair<int, int>(item.Key, item.Value));
-                                }
                                 
+                                FoundWords.Add(new KeyValuePair<int, int>(item.Key, item.Value));
+    
                             }
                             //check to make sure board is not empty and checks if there is any islands
                             if (MainWindow.ValidPairs.Count != 0 && !IsConnect(Storage))
                             {
                                 return -1;
                             }
-
+                            
                             HorizontalWord = FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b);
                             int points = CalculateScore(HorizontalWord);
                             TotalScore += points;
                             MainWindow.OutPutTextBox.AppendText("The word " + HorizontalWord + " is worth " + points + "\n");
+                            
+                           
 
                         }
                     }
@@ -470,31 +478,7 @@ namespace Scrabble
             }
             return false;
         }
-        //returns true if there is a duplicate word found
-        public static bool IsDuplicate(List<KeyValuePair<int, int>> Storage, List<KeyValuePair<int, int>> FoundWords)
-        {
-            if(FoundWords.Count == 0)
-            {
-                return false;
-            }
-            foreach(KeyValuePair<int, int> item in Storage)
-            {
-                int found = 0;
-                foreach(KeyValuePair<int, int> Found in FoundWords)
-                {
-                    if (item.Key == Found.Key || item.Value == Found.Value)
-                    {
-                        found = 1;
-                        break;
-                    }
-                }
-                if (found == 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+       
 
         
     }

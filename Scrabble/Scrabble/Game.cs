@@ -396,6 +396,7 @@ namespace Scrabble
                 {
                     for(int b=0; b<= BackLength; b++)
                     {
+                     
                         if (SearchWord.ValidWord(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b)) && !DuplicateWords.Contains(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b)) )
                         {
                             DuplicateWords.Add(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b));

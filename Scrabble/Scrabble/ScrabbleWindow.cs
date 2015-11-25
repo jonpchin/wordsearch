@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace Scrabble
 {
@@ -33,7 +34,12 @@ namespace Scrabble
         public static RichTextBox OutPutTextBox = new RichTextBox();
         //list of x and y coordinates of all validated disabled tiles on the board. Used to check adjacency
         public static List<KeyValuePair<int, int>> ValidPairs = new List<KeyValuePair<int, int>>();
-   
+
+
+        //Holds selected button's button index
+        public static List<KeyValuePair<int, string>> SelectedHandIndex = new List<KeyValuePair<int, string>>();
+        //bool checks if SelectedHandIndex button has been placed yet
+        public static List<KeyValuePair<int, bool>> PlacedHandIndex = new List<KeyValuePair<int, bool>>();
 
         public MainWindow()
         {
@@ -215,6 +221,7 @@ namespace Scrabble
                                 int counter = 0;
                                 int index = 1;
                                 
+
                                  //searches for letter in the SelectedTiles list to be disabled
                                 foreach (Button item in PlayerHandButtons)
                                 { 
@@ -227,6 +234,23 @@ namespace Scrabble
                                 }
 
                                 
+
+                                //Checks if letter was placed and if text matches tile char
+                                //Goes in order from what letter was clicked on first
+                                for (int z = 0; z < SelectedHandIndex.Count; z++)
+                                {
+                                    if (SelectedHandIndex[z].Value == FrontEndBoard[TempI, TempJ].Text && PlacedHandIndex[z].Value == false)
+                                    {
+                                        index = SelectedHandIndex[z].Key;
+                                        PlacedHandIndex[z] = new KeyValuePair<int, bool>(SelectedHandIndex[z].Key, true); //Replace key with new one where bool is true
+                                        break;
+                                    }
+                                }
+
+                                //Sets the index to the specfied index of the button in the player's hand
+                                //that was set upon clicking the button
+                                //index = selectedHandIndex;
+
                                 //disables the tile in the hand that was placed on the board
                                 PlayerHandButtons[index].BackColor = SystemColors.ButtonFace;
                                 PlayerHandButtons[index].UseVisualStyleBackColor = true;
@@ -245,14 +269,18 @@ namespace Scrabble
                         {
 
                             //searchs for disabled tile in players hand
-                            for(int k=0; k<7; k++)
+                            //If was placed and text is equal, then must be the right tile
+                            for(int k=0; k<SelectedHandIndex.Count; k++)
                             {
-                                if (PlayerHandButtons[k].Text == FrontEndBoard[TempI, TempJ].Text && PlayerHandButtons[k].Enabled == false)
+                                if (SelectedHandIndex[k].Value == FrontEndBoard[TempI, TempJ].Text && PlayerHandButtons[SelectedHandIndex[k].Key].Enabled == false 
+                                && PlacedHandIndex[k].Value == true)
                                 {
-                                    IndexValue = k;
+                                    IndexValue = SelectedHandIndex[k].Key;
+                                    //Remove the list elements after being put back into player's hand
+                                    SelectedHandIndex.Remove(SelectedHandIndex[k]);
+                                    PlacedHandIndex.Remove(PlacedHandIndex[k]);
                                     break;
                                 }
-                                IndexValue++;
                             }
                                                
                             PlacedTiles.Remove(FrontEndBoard[TempI, TempJ].Text);
@@ -314,7 +342,12 @@ namespace Scrabble
                         SelectedTiles.Add(PlayerHandButtons[Temp].Text);
                         //background color of button will change to show it is selected
                         PlayerHandButtons[Temp].BackColor = Color.Green;
-                     
+
+
+                        //Selected button's index in hand
+                        SelectedHandIndex.Add(new KeyValuePair<int, string>(Temp, PlayerHandButtons[Temp].Text));
+                        PlacedHandIndex.Add(new KeyValuePair<int, bool>(Temp, false));
+
                     }
                     
                 };

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System.Text.RegularExpressions;
-using System.Diagnostics;
 
 namespace Scrabble
 {
@@ -34,12 +33,11 @@ namespace Scrabble
         public static RichTextBox OutPutTextBox = new RichTextBox();
         //list of x and y coordinates of all validated disabled tiles on the board. Used to check adjacency
         public static List<KeyValuePair<int, int>> ValidPairs = new List<KeyValuePair<int, int>>();
-
-
-        //Holds selected button's button index
-        public static List<KeyValuePair<int, string>> SelectedHandIndex = new List<KeyValuePair<int, string>>();
-        //bool checks if SelectedHandIndex button has been placed yet
-        public static List<KeyValuePair<int, bool>> PlacedHandIndex = new List<KeyValuePair<int, bool>>();
+        //level 1 is easy level 2 is hard
+        public static int Level = 1;
+        //allows this to be accessed by Game.cs
+        public static Label ComputerScore = new Label();
+        public static Label PlayerScore = new Label();
 
         public MainWindow()
         {
@@ -47,7 +45,7 @@ namespace Scrabble
             game = new Game();
 
             //setups output textbox
-           
+
             OutPutTextBox.Name = "Scrabble Console";
             //sets the location of output textbox
             OutPutTextBox.Left = 550;
@@ -60,7 +58,7 @@ namespace Scrabble
             Label PlayerLabel = new Label();
             PlayerLabel.Text = "Player Score";
             PlayerLabel.Location = new Point(870, 460);
-            Label PlayerScore = new Label();
+
             PlayerScore.Text = "0";
             PlayerScore.Location = new Point(895, 485);
 
@@ -68,7 +66,6 @@ namespace Scrabble
             ComputerLabel.Text = "Computer Score";
             ComputerLabel.Location = new Point(870, 50);
 
-            Label ComputerScore = new Label();
             ComputerScore.Text = "0";
             ComputerScore.Location = new Point(900, 75);
 
@@ -87,8 +84,15 @@ namespace Scrabble
 
             Pass.Click += delegate (System.Object o, System.EventArgs e)
             {
-                OutPutTextBox.AppendText("You pass.\n");
-                OutPutTextBox.ScrollToCaret();
+                OutPutTextBox.Text += "You pass.\n";
+                if (Level == 1)
+                {
+                    Game.SwitchTurnsEasy();
+                }
+                else
+                {
+                    Game.SwitchTurnsHard();
+                }
 
             };
             this.Controls.Add(Pass);
@@ -98,36 +102,44 @@ namespace Scrabble
             Discard.Text = "Discard";
             Discard.Size = new Size(100, 40);
             Discard.Location = new Point(650, 500);
-            
+
             Discard.Click += delegate (System.Object o, System.EventArgs e)
             {
                 //if player has not placed any tiles on the board
-                if(PlacedTiles.Count == 0)
+                if (PlacedTiles.Count == 0)
                 {
-                    
-                    foreach(Button PlayerTile in PlayerHandButtons)
+
+                    foreach (Button PlayerTile in PlayerHandButtons)
                     {
                         if (PlayerTile.BackColor == Color.Green)
                         {
-                               
+
                             PlayerTile.Text = Game.DrawTile();
                             PlayerTile.BackColor = SystemColors.ButtonFace;
                             PlayerTile.UseVisualStyleBackColor = true;
-                                
+
                         }
-                            
-                    }         
+
+                    }
                     //emptys the list
                     SelectedTiles.Clear();
                     OutPutTextBox.AppendText("You remove your tiles and get new ones.\n");
-                    OutPutTextBox.ScrollToCaret();
+                    MainWindow.OutPutTextBox.ScrollToCaret();
+                    if (Level == 1)
+                    {
+                        Game.SwitchTurnsEasy();
+                    }
+                    else
+                    {
+                        Game.SwitchTurnsHard();
+                    }
                 }
                 else
                 {
                     OutPutTextBox.AppendText("You need to remove the tiles from the board first.\n");
-                    OutPutTextBox.ScrollToCaret();
+                    MainWindow.OutPutTextBox.ScrollToCaret();
                 }
-               
+
             };
             this.Controls.Add(Discard);
 
@@ -140,14 +152,15 @@ namespace Scrabble
             Submit.Click += delegate (System.Object o, System.EventArgs e)
             {
                 int Total;
-                if ((Total = Game.CheckWords(CoordinatePairs)) > 0 )
+                if ((Total = Game.CheckWords(CoordinatePairs)) > 0)
                 {
                     //then all the coordinates are valid and should be saved for future adjacency checks
-                    foreach(KeyValuePair<int, int> item in CoordinatePairs)
+                    foreach (KeyValuePair<int, int> item in CoordinatePairs)
                     {
                         ValidPairs.Add(new KeyValuePair<int, int>(item.Key, item.Value));
-                    } 
+                    }
                     OutPutTextBox.AppendText("You scored a total of " + Total + " points.\n");
+            
                     //updating the score for the players front end
                     PlayerScore.Text = (Convert.ToInt32(PlayerScore.Text) + Convert.ToInt32(Total)).ToString();
                     //replaces the tiles that are disabled in the players hand
@@ -168,8 +181,18 @@ namespace Scrabble
                     }
                     //removes all coordinates from list
                     CoordinatePairs.Clear();
-                    //now its the computers turn
-                    Game.SwitchTurns();
+                    //now its the computers turn. Later we will make a new function called 
+                    //Game.SwitchTurnsHard and it will use multiple tiles to place on the board
+                    //level is a global variable
+                    if (Level == 1)
+                    {
+                        Game.SwitchTurnsEasy();
+                    }
+                    else
+                    {
+                        Game.SwitchTurnsHard();
+                    }
+                    
                 }
                 else if (Total == -1)
                 {
@@ -183,7 +206,7 @@ namespace Scrabble
                 {
                     OutPutTextBox.AppendText("That word is not valid.\n");
                 }
-                OutPutTextBox.ScrollToCaret();
+                MainWindow.OutPutTextBox.ScrollToCaret();
 
             };
 
@@ -196,7 +219,7 @@ namespace Scrabble
                     FrontEndBoard[i, j] = new Button();
                     FrontEndBoard[i, j].Text = " ";
                     FrontEndBoard[i, j].Size = new Size(40, 40);
-                    FrontEndBoard[i, j].Location = new Point(j * 30+40, i * 30+40);
+                    FrontEndBoard[i, j].Location = new Point(j * 30 + 40, i * 30 + 40);
 
                     int TempI = i;
                     int TempJ = j;
@@ -204,53 +227,32 @@ namespace Scrabble
                     //this event happens when one of the buttons on the front board is clicked
                     FrontEndBoard[i, j].Click += delegate (System.Object o, System.EventArgs e)
                     {
-                        
+
                         int IndexValue = 0;
 
                         //if there is already a letter on the frontBoard then its removed
                         //placed back into the players hand
-                        if (FrontEndBoard[TempI,TempJ].Text == " ")
+                        if (FrontEndBoard[TempI, TempJ].Text == " ")
                         {
-                            
+
                             //updating frontBoard, checking to make sure list is not empty
-                            if(SelectedTiles.Count != 0)
+                            if (SelectedTiles.Count != 0)
                             {
                                 //updating backend Board by placing string
                                 Game.ScrabbleBoard[TempI, TempJ] = SelectedTiles[0];
                                 FrontEndBoard[TempI, TempJ].Text = SelectedTiles[0];
                                 int counter = 0;
                                 int index = 1;
-                                
-
-                                 //searches for letter in the SelectedTiles list to be disabled
+                                //searches for letter in the SelectedTiles list to be disabled
                                 foreach (Button item in PlayerHandButtons)
-                                { 
-                                    if (SelectedTiles[0] == item.Text && item.Enabled==true)
+                                {
+                                    if (SelectedTiles[0] == item.Text && item.Enabled == true)
                                     {
                                         index = counter;
                                         break;
                                     }
                                     counter++;
                                 }
-
-                                
-
-                                //Checks if letter was placed and if text matches tile char
-                                //Goes in order from what letter was clicked on first
-                                for (int z = 0; z < SelectedHandIndex.Count; z++)
-                                {
-                                    if (SelectedHandIndex[z].Value == FrontEndBoard[TempI, TempJ].Text && PlacedHandIndex[z].Value == false)
-                                    {
-                                        index = SelectedHandIndex[z].Key;
-                                        PlacedHandIndex[z] = new KeyValuePair<int, bool>(SelectedHandIndex[z].Key, true); //Replace key with new one where bool is true
-                                        break;
-                                    }
-                                }
-
-                                //Sets the index to the specfied index of the button in the player's hand
-                                //that was set upon clicking the button
-                                //index = selectedHandIndex;
-
                                 //disables the tile in the hand that was placed on the board
                                 PlayerHandButtons[index].BackColor = SystemColors.ButtonFace;
                                 PlayerHandButtons[index].UseVisualStyleBackColor = true;
@@ -261,28 +263,24 @@ namespace Scrabble
 
                                 //storing x and y coordinates to be called when checking for valid words
                                 CoordinatePairs.Add(new KeyValuePair<int, int>(TempI, TempJ));
-                                
-                            }            
-                            
+
+                            }
+
                         }
                         else
                         {
 
                             //searchs for disabled tile in players hand
-                            //If was placed and text is equal, then must be the right tile
-                            for(int k=0; k<SelectedHandIndex.Count; k++)
+                            for (int k = 0; k < 7; k++)
                             {
-                                if (SelectedHandIndex[k].Value == FrontEndBoard[TempI, TempJ].Text && PlayerHandButtons[SelectedHandIndex[k].Key].Enabled == false 
-                                && PlacedHandIndex[k].Value == true)
+                                if (PlayerHandButtons[k].Text == FrontEndBoard[TempI, TempJ].Text && PlayerHandButtons[k].Enabled == false)
                                 {
-                                    IndexValue = SelectedHandIndex[k].Key;
-                                    //Remove the list elements after being put back into player's hand
-                                    SelectedHandIndex.Remove(SelectedHandIndex[k]);
-                                    PlacedHandIndex.Remove(PlacedHandIndex[k]);
+                                    IndexValue = k;
                                     break;
                                 }
+                                IndexValue++;
                             }
-                                               
+
                             PlacedTiles.Remove(FrontEndBoard[TempI, TempJ].Text);
 
                             //updating backend Board by removing string
@@ -290,12 +288,12 @@ namespace Scrabble
                             //updating frontend Board
                             FrontEndBoard[TempI, TempJ].Text = " ";
                             PlayerHandButtons[IndexValue].Enabled = true;
-                            
+
                             //removes x and y coordinates from CoordinatePairs
                             CoordinatePairs.Remove(new KeyValuePair<int, int>(TempI, TempJ));
-                            
+
                         }
-                        
+
                     };
                     this.Controls.Add(FrontEndBoard[i, j]);
                     this.Controls.Add(OutPutTextBox);
@@ -315,7 +313,7 @@ namespace Scrabble
                 PlayerHandButtons[i].Click += delegate (System.Object o, System.EventArgs e)
                 {
                     //if a blank tile is selected then allow player to enter the desired letter
-                    if(PlayerHandButtons[Temp].Text == " ")
+                    if (PlayerHandButtons[Temp].Text == " ")
                     {
                         //make sure to add check to ensure only one letter is entered and not digits or strings
                         string ReturnedLetter = Microsoft.VisualBasic.Interaction.InputBox("Enter a Letter", "Enter Letter", "Enter a letter please", 200, 200);
@@ -324,32 +322,26 @@ namespace Scrabble
                         {
                             PlayerHandButtons[Temp].Text = ReturnedLetter;
                         }
-                        
-                     }
+
+                    }
                     //if button is already selected then deselect it
                     else if (PlayerHandButtons[Temp].BackColor == Color.Green)
                     {
                         PlayerHandButtons[Temp].BackColor = SystemColors.ButtonFace;
                         PlayerHandButtons[Temp].UseVisualStyleBackColor = true;
-                   
+
                         //searches for letter in the SelectedTiles list to be removed
                         SelectedTiles.Remove(PlayerHandButtons[Temp].Text);
                     }
-                    
+
                     else
                     {
                         //tile will get ready before being placed on the board
                         SelectedTiles.Add(PlayerHandButtons[Temp].Text);
                         //background color of button will change to show it is selected
                         PlayerHandButtons[Temp].BackColor = Color.Green;
-
-
-                        //Selected button's index in hand
-                        SelectedHandIndex.Add(new KeyValuePair<int, string>(Temp, PlayerHandButtons[Temp].Text));
-                        PlacedHandIndex.Add(new KeyValuePair<int, bool>(Temp, false));
-
                     }
-                    
+
                 };
                 this.Controls.Add(PlayerHandButtons[i]);
             }
@@ -372,8 +364,21 @@ namespace Scrabble
 
         }
 
-       
+        public void ComputerPlaceTiles()
+        {
 
+        }
 
+        private void easyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OutPutTextBox.AppendText("You are now playing against easy computer.\n");
+            Level = 1;
+        }
+
+        private void hardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OutPutTextBox.AppendText("You are now playing against hard computer.\n");
+            Level = 2;
+        }
     }
 }

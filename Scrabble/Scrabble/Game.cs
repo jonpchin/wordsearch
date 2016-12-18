@@ -99,20 +99,18 @@ namespace Scrabble
                 DeckOfTiles.Add("W");
                 DeckOfTiles.Add("Y");
             }
+
             for (int i = 0; i < 3; i++)
             {
-
                 DeckOfTiles.Add("G");
-              
             }
+
             for (int i = 0; i < 4; i++)
             {
-
                 DeckOfTiles.Add("L");
                 DeckOfTiles.Add("S");
                 DeckOfTiles.Add("U");
                 DeckOfTiles.Add("D");
-
             }
 
             for (int i = 0; i < 6; i++)
@@ -121,7 +119,6 @@ namespace Scrabble
                 DeckOfTiles.Add("N");
                 DeckOfTiles.Add("R");
                 DeckOfTiles.Add("T");
-
             }
             for (int i = 0; i < 8; i++)
             {
@@ -145,7 +142,6 @@ namespace Scrabble
             PrintDeck();
             //loads seven tiles of computer, playe hand will only be stored on front end
             SetupComputerHand();
-
         }
         //function used to randomly select a player
         public string DrawLetter()
@@ -189,14 +185,12 @@ namespace Scrabble
                 //deckOfTiles is empty so game will end with this function call
                 GameOver();
                 //blank junk tile is returned
-                return " ";
-               
+                return " ";         
             }
             string temp = DeckOfTiles[DeckOfTiles.Count - 1];
             //deletes the last tile in the deck
             DeckOfTiles.RemoveAt(DeckOfTiles.Count - 1);
             return temp;
-
         }
 
         //prints the deck of tiles onto console, used only for testing purposes
@@ -249,11 +243,8 @@ namespace Scrabble
                 }
             }
 
-
             for (int i = 0; i < CoordinatePairs.Count; i++) //Checks each column for full word
-            {
-
-            
+            {       
                 //stores x, y coordinates of current word being built
                 List<KeyValuePair<int, int>> Storage = new List<KeyValuePair<int, int>>();
 
@@ -265,13 +256,10 @@ namespace Scrabble
                 if (j >= 0 && ScrabbleBoard[j, CoordinatePairs[i].Value] != " ")
                 {
                     Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
-                }
-                
+                }            
 
                 while (j >= 0 && ScrabbleBoard[j, CoordinatePairs[i].Value] != " ")
-                {
-
-                    
+                {             
                     tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
                     FrontWord = tile + FrontWord;
                     j--;
@@ -280,8 +268,6 @@ namespace Scrabble
                         //Get char at tile position, moving up until empty tile found
                         Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
                     }
-                   
-
                 }
                 FrontWord.Trim();
 
@@ -295,8 +281,7 @@ namespace Scrabble
                 Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
 
                 while (j <= 14 && ScrabbleBoard[j, CoordinatePairs[i].Value] != " ")
-                {
-                    
+                {             
                     tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
                     BackWord += tile;
                     j++;
@@ -304,15 +289,13 @@ namespace Scrabble
                     {
                         //Get char at tile position, moving up until empty tile found
                         Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
-                    }
-                    
+                    }       
                 }
                 BackWord.Trim();
 
                 int FrontLength = FrontWord.Length;
                 int BackLength = BackWord.Length;
                 
-
                 for (int a=0; a<=FrontLength; a++)
                 {
                     for(int b=0; b<=BackLength; b++)
@@ -321,13 +304,10 @@ namespace Scrabble
                         {
                             List<KeyValuePair<int, int>> Temp = Storage.GetRange(a, FrontLength - a + 1 + BackLength - b);
 
-
                             DuplicateWords.Add(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b));
                             //storing all x, y coordinates of valid word to be used to check if all letters used 
                             foreach (KeyValuePair<int, int> item in Temp)
-                            {
-                               
-
+                            {                   
                                 FoundWords.Add(new KeyValuePair<int, int>(item.Key, item.Value));
                             }
                             //check to make sure board is not empty and checks if there is any islands
@@ -335,8 +315,7 @@ namespace Scrabble
                             {
                                 Connect = 1;
                             }
-
-                            
+           
                             VerticalWord = FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b);
                             int points = CalculateScore(VerticalWord);
                             TotalScore += points;
@@ -348,12 +327,9 @@ namespace Scrabble
 
                                 UsedLetters[item.Key, item.Value] = true;
                             }  
-
                         }
                     }
                 }
-
-
             }
             //horizontal words do not collide with vertical words for duplicates
             DuplicateWords.Clear();
@@ -370,7 +346,6 @@ namespace Scrabble
                 {
                     Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, j));
                 }
-                
 
                 while (j >= 0 && ScrabbleBoard[CoordinatePairs[i].Key, j] != " ")
                 {
@@ -379,10 +354,8 @@ namespace Scrabble
                     j--;
                     if(j >= 0 && ScrabbleBoard[CoordinatePairs[i].Key, j] != " ")
                     {
-
                         //adds tiles to the LEFT of the played tile
                         Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, j));
-
                     }
                    
                 }
@@ -431,10 +404,8 @@ namespace Scrabble
                            
                             DuplicateWords.Add(FrontWord.Substring(a, FrontLength - a) + MainLetter + BackWord.Substring(0, BackLength - b));
                             foreach (KeyValuePair<int, int> item in Temp)
-                            {
-                               
+                            {  
                                 FoundWords.Add(new KeyValuePair<int, int>(item.Key, item.Value));
-    
                             }
                             //check to make sure board is not empty and checks if there is any islands
                             if (MainWindow.ValidPairs.Count == 0 || IsConnect(Temp))
@@ -463,12 +434,9 @@ namespace Scrabble
                                     flag = 1;
                                 }
                             }
-
                         }
                     }
                 }
-               
-
             }
             if (flag == 0 && Connect == 1)
             {
@@ -597,8 +565,5 @@ namespace Scrabble
             }
             return false;
         }
-       
-
-        
     }
 }

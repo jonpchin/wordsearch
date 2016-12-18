@@ -12,8 +12,7 @@ namespace Scrabble
         
         public SearchWord()
         {
-            
-            
+   
         }
 
         public static void MakeDictionary()
@@ -23,7 +22,6 @@ namespace Scrabble
 
             for (int i = 0; i < data.Length; i++)              //Adds to Dictionary
                 Game.wordList.Add(data[i], i);
-
         }
 
         public static bool ValidWord(string word) //If word in dictionary, return true, else false

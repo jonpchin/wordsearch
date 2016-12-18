@@ -93,7 +93,6 @@ namespace Scrabble
                 {
                     Game.SwitchTurnsHard();
                 }
-
             };
             this.Controls.Add(Pass);
 
@@ -113,13 +112,10 @@ namespace Scrabble
                     {
                         if (PlayerTile.BackColor == Color.Green)
                         {
-
                             PlayerTile.Text = Game.DrawTile();
                             PlayerTile.BackColor = SystemColors.ButtonFace;
                             PlayerTile.UseVisualStyleBackColor = true;
-
                         }
-
                     }
                     //emptys the list
                     SelectedTiles.Clear();
@@ -263,13 +259,10 @@ namespace Scrabble
 
                                 //storing x and y coordinates to be called when checking for valid words
                                 CoordinatePairs.Add(new KeyValuePair<int, int>(TempI, TempJ));
-
                             }
-
                         }
                         else
                         {
-
                             //searchs for disabled tile in players hand
                             for (int k = 0; k < 7; k++)
                             {
@@ -291,9 +284,7 @@ namespace Scrabble
 
                             //removes x and y coordinates from CoordinatePairs
                             CoordinatePairs.Remove(new KeyValuePair<int, int>(TempI, TempJ));
-
                         }
-
                     };
                     this.Controls.Add(FrontEndBoard[i, j]);
                     this.Controls.Add(OutPutTextBox);
@@ -322,7 +313,6 @@ namespace Scrabble
                         {
                             PlayerHandButtons[Temp].Text = ReturnedLetter;
                         }
-
                     }
                     //if button is already selected then deselect it
                     else if (PlayerHandButtons[Temp].BackColor == Color.Green)
@@ -341,13 +331,10 @@ namespace Scrabble
                         //background color of button will change to show it is selected
                         PlayerHandButtons[Temp].BackColor = Color.Green;
                     }
-
                 };
                 this.Controls.Add(PlayerHandButtons[i]);
             }
-
         }
-
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {

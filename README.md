@@ -5,6 +5,4 @@ Scrabble Beta 1.0 has basic player vs computer functionality. It was tested on W
 
 https://github.com/hashSort/Scrabble/releases/tag/V1.0
 
-<br>
 ![Alt text](/scrabble.png?raw=true "Scrabble")
-<br>

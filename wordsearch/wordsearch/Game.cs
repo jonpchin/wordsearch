@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Scrabble
+namespace wordsearch
 {
     /*
     This class will perform the game logic in the backend
@@ -15,7 +15,7 @@ namespace Scrabble
         private const int COLS = 15;
 
         //global static board array, yes its bad practice but its convienent 
-        public static string[,] ScrabbleBoard = new String[ROWS, COLS];
+        public static string[,] wordsearchBoard = new String[ROWS, COLS];
         //dynamic array of chars for deck of Tiles
         public static List<string> DeckOfTiles = new List<string>();
         //computers hand of seven tiles
@@ -46,7 +46,7 @@ namespace Scrabble
                 for(int j=0; j<COLS; j++)
                 {
                     //intitalizing board to default blank chars
-                    ScrabbleBoard[i,j] = " ";
+                    wordsearchBoard[i,j] = " ";
                 }
             }      
             ScoreTable[" "] = 0;
@@ -253,17 +253,17 @@ namespace Scrabble
                 string FrontWord = "";
                 string tile;
                 //Get char at tile position, moving up until empty tile found
-                if (j >= 0 && ScrabbleBoard[j, CoordinatePairs[i].Value] != " ")
+                if (j >= 0 && wordsearchBoard[j, CoordinatePairs[i].Value] != " ")
                 {
                     Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
                 }            
 
-                while (j >= 0 && ScrabbleBoard[j, CoordinatePairs[i].Value] != " ")
+                while (j >= 0 && wordsearchBoard[j, CoordinatePairs[i].Value] != " ")
                 {             
-                    tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
+                    tile = wordsearchBoard[j, CoordinatePairs[i].Value];
                     FrontWord = tile + FrontWord;
                     j--;
-                    if(j>=0 && ScrabbleBoard[j, CoordinatePairs[i].Value] != " ")
+                    if(j>=0 && wordsearchBoard[j, CoordinatePairs[i].Value] != " ")
                     {
                         //Get char at tile position, moving up until empty tile found
                         Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
@@ -272,7 +272,7 @@ namespace Scrabble
                 FrontWord.Trim();
 
                 //main letter that is guarnteed to be placed
-                string MainLetter = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
+                string MainLetter = wordsearchBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
                 Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, CoordinatePairs[i].Value));
          
                 j = CoordinatePairs[i].Key + 1; //Move up a row
@@ -280,12 +280,12 @@ namespace Scrabble
                 string BackWord = "";
                 Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
 
-                while (j <= 14 && ScrabbleBoard[j, CoordinatePairs[i].Value] != " ")
+                while (j <= 14 && wordsearchBoard[j, CoordinatePairs[i].Value] != " ")
                 {             
-                    tile = ScrabbleBoard[j, CoordinatePairs[i].Value];
+                    tile = wordsearchBoard[j, CoordinatePairs[i].Value];
                     BackWord += tile;
                     j++;
-                    if(j <= 14 && ScrabbleBoard[j, CoordinatePairs[i].Value] != " ")
+                    if(j <= 14 && wordsearchBoard[j, CoordinatePairs[i].Value] != " ")
                     {
                         //Get char at tile position, moving up until empty tile found
                         Storage.Add(new KeyValuePair<int, int>(j, CoordinatePairs[i].Value));
@@ -342,17 +342,17 @@ namespace Scrabble
 
                 string FrontWord = "";
                 string tile;
-                if(j >= 0 && ScrabbleBoard[CoordinatePairs[i].Key, j] != " ")
+                if(j >= 0 && wordsearchBoard[CoordinatePairs[i].Key, j] != " ")
                 {
                     Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, j));
                 }
 
-                while (j >= 0 && ScrabbleBoard[CoordinatePairs[i].Key, j] != " ")
+                while (j >= 0 && wordsearchBoard[CoordinatePairs[i].Key, j] != " ")
                 {
-                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j];
+                    tile = wordsearchBoard[CoordinatePairs[i].Key, j];
                     FrontWord = tile + FrontWord;
                     j--;
-                    if(j >= 0 && ScrabbleBoard[CoordinatePairs[i].Key, j] != " ")
+                    if(j >= 0 && wordsearchBoard[CoordinatePairs[i].Key, j] != " ")
                     {
                         //adds tiles to the LEFT of the played tile
                         Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, j));
@@ -363,24 +363,24 @@ namespace Scrabble
 
                 //adding original coordinate
                 Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, CoordinatePairs[i].Value));
-                string MainLetter = ScrabbleBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
+                string MainLetter = wordsearchBoard[CoordinatePairs[i].Key, CoordinatePairs[i].Value];
 
                 j = CoordinatePairs[i].Value + 1;
                 
 
                 string BackWord = "";
-                if (j <= 14 && ScrabbleBoard[CoordinatePairs[i].Key, j] != " ")
+                if (j <= 14 && wordsearchBoard[CoordinatePairs[i].Key, j] != " ")
                 {
                     Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, j));
                 }
                
-                while (j <= 14 && ScrabbleBoard[CoordinatePairs[i].Key, j] != " ")
+                while (j <= 14 && wordsearchBoard[CoordinatePairs[i].Key, j] != " ")
                 {
                      
-                    tile = ScrabbleBoard[CoordinatePairs[i].Key, j];
+                    tile = wordsearchBoard[CoordinatePairs[i].Key, j];
                     BackWord += tile;
                     j++;
-                    if(j <= 14 && ScrabbleBoard[CoordinatePairs[i].Key, j] != " ")
+                    if(j <= 14 && wordsearchBoard[CoordinatePairs[i].Key, j] != " ")
                     {
                         //adds tiles to the RIGHT of the played tile
                         Storage.Add(new KeyValuePair<int, int>(CoordinatePairs[i].Key, j));
@@ -465,14 +465,14 @@ namespace Scrabble
             {
                 for(int j=0; j< COLS; j++)
                 {
-                    if(ScrabbleBoard[i, j] == " " && CheckAdjacent(i, j))
+                    if(wordsearchBoard[i, j] == " " && CheckAdjacent(i, j))
                     {
                         ComputerCoordinatePairs.Add(new KeyValuePair<int, int>(i, j));
                         int Total;
                         int Counter = 0;
                         foreach (string item in ComputerHand)
                         {
-                            ScrabbleBoard[i, j] = item;
+                            wordsearchBoard[i, j] = item;
                             //for easy level just check right away to see if there is a possible word
                             //with just this one tile
                             if ((Total = CheckWords(ComputerCoordinatePairs)) > 0)
@@ -495,7 +495,7 @@ namespace Scrabble
                             }
                             Counter++;
                         }
-                        ScrabbleBoard[i, j] = " ";
+                        wordsearchBoard[i, j] = " ";
                         ComputerCoordinatePairs.Clear();
                     }
                 }
@@ -513,19 +513,19 @@ namespace Scrabble
         //used by computer to bruteforce
         public static bool CheckAdjacent(int x, int y)
         {
-            if(x-1 >= 0 && ScrabbleBoard[x-1, y] != " ")
+            if(x-1 >= 0 && wordsearchBoard[x-1, y] != " ")
             {
                 return true;
             }
-            else if (x+1 < ROWS && ScrabbleBoard[x+1, y] != " ")
+            else if (x+1 < ROWS && wordsearchBoard[x+1, y] != " ")
             {
                 return true;
             }
-            else if (y -1 >= 0 && ScrabbleBoard[x , y-1] != " ")
+            else if (y -1 >= 0 && wordsearchBoard[x , y-1] != " ")
             {
                 return true;
             }
-            else if (y + 1 < COLS && ScrabbleBoard[x, y + 1] != " ")
+            else if (y + 1 < COLS && wordsearchBoard[x, y + 1] != " ")
             {
                 return true;
             }
@@ -537,7 +537,7 @@ namespace Scrabble
         {
             if(Convert.ToInt32(MainWindow.PlayerScore.Text) > Convert.ToInt32(MainWindow.ComputerScore.Text))
             {
-                MainWindow.OutPutTextBox.AppendText("You won Scrabble!\n");
+                MainWindow.OutPutTextBox.AppendText("You won wordsearch!\n");
             }
             else if(Convert.ToInt32(MainWindow.PlayerScore.Text) < Convert.ToInt32(MainWindow.ComputerScore.Text))
             {

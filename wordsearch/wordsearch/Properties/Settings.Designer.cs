@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Scrabble.Properties
+namespace wordsearch.Properties
 {
 
 

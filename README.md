@@ -5,4 +5,4 @@ Wordsearch Beta 1.0 has basic player vs computer functionality. It was tested on
 
 https://github.com/hashSort/wordsearch/releases/tag/V1.0
 
-![Alt text](/scrabble.png?raw=true "Wordsearch")
+![Alt text](/wordsearch.png?raw=true "Wordsearch")

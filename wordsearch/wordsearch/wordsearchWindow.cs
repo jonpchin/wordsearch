@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System.Text.RegularExpressions;
 
-namespace Scrabble
+namespace wordsearch
 {
     public partial class MainWindow : Form
     {
@@ -46,7 +46,7 @@ namespace Scrabble
 
             //setups output textbox
 
-            OutPutTextBox.Name = "Scrabble Console";
+            OutPutTextBox.Name = "wordsearch Console";
             //sets the location of output textbox
             OutPutTextBox.Left = 550;
             OutPutTextBox.Top = 40;
@@ -235,7 +235,7 @@ namespace Scrabble
                             if (SelectedTiles.Count != 0)
                             {
                                 //updating backend Board by placing string
-                                Game.ScrabbleBoard[TempI, TempJ] = SelectedTiles[0];
+                                Game.wordsearchBoard[TempI, TempJ] = SelectedTiles[0];
                                 FrontEndBoard[TempI, TempJ].Text = SelectedTiles[0];
                                 int counter = 0;
                                 int index = 1;
@@ -277,7 +277,7 @@ namespace Scrabble
                             PlacedTiles.Remove(FrontEndBoard[TempI, TempJ].Text);
 
                             //updating backend Board by removing string
-                            Game.ScrabbleBoard[TempI, TempJ] = " ";
+                            Game.wordsearchBoard[TempI, TempJ] = " ";
                             //updating frontend Board
                             FrontEndBoard[TempI, TempJ].Text = " ";
                             PlayerHandButtons[IndexValue].Enabled = true;
